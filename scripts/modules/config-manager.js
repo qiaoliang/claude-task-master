@@ -904,7 +904,6 @@ function isApiKeySet(providerName, session = null, projectRoot = null) {
 		xai: 'XAI_API_KEY',
 		zai: 'ZAI_API_KEY',
 		'zai-coding': 'ZAI_API_KEY',
-		'glm-direct': 'GLM_API_KEY',
 		groq: 'GROQ_API_KEY',
 		vertex: 'GOOGLE_API_KEY', // Vertex uses the same key as Google
 		'claude-code': 'CLAUDE_CODE_API_KEY', // Not actually used, but included for consistency

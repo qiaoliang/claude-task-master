@@ -68,7 +68,6 @@ const PROVIDERS = {
 	google: new GoogleAIProvider(),
 	zai: new ZAIProvider(),
 	'zai-coding': new ZAICodingProvider(),
-	'glm-direct': new GLMDirectProvider(),
 	lmstudio: new LMStudioProvider(),
 	openai: new OpenAIProvider(),
 	xai: new XAIProvider(),

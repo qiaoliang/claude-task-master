@@ -11,7 +11,6 @@ export const VALIDATED_PROVIDERS = [
 	'google',
 	'zai',
 	'zai-coding',
-	'glm-direct',
 	'perplexity',
 	'xai',
 	'groq',
