@@ -5,11 +5,13 @@
 
 // Providers that have predefined model lists and should be validated
 export const VALIDATED_PROVIDERS = [
+	'tm-direct',
 	'anthropic',
 	'openai',
 	'google',
 	'zai',
 	'zai-coding',
+	'glm-direct',
 	'perplexity',
 	'xai',
 	'groq',

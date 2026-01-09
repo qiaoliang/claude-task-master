@@ -3925,7 +3925,7 @@ Examples:
 			const taskMaster = initTaskMaster({});
 			const projectRoot = taskMaster.getProjectRoot(); // Find project root for context
 			const { response, setup } = options;
-			let responseLanguage = response !== undefined ? response : 'English';
+			let responseLanguage = response !== undefined ? response : 'Chinese';
 			if (setup) {
 				console.log(
 					chalk.blue('Starting interactive response language setup...')

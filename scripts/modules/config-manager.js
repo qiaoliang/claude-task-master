@@ -55,7 +55,7 @@ const DEFAULTS = {
 		projectName: 'Task Master',
 		ollamaBaseURL: 'http://localhost:11434/api',
 		bedrockBaseURL: 'https://bedrock.us-east-1.amazonaws.com',
-		responseLanguage: 'English',
+		responseLanguage: 'Chinese',
 		enableCodebaseAnalysis: true,
 		enableProxy: false,
 		anonymousTelemetry: true // Allow users to opt out of Sentry telemetry for local storage
@@ -893,6 +893,7 @@ function isApiKeySet(providerName, session = null, projectRoot = null) {
 	}
 
 	const keyMap = {
+		'tm-direct': 'TM_API_KEY',
 		openai: 'OPENAI_API_KEY',
 		anthropic: 'ANTHROPIC_API_KEY',
 		google: 'GOOGLE_API_KEY',
@@ -903,6 +904,7 @@ function isApiKeySet(providerName, session = null, projectRoot = null) {
 		xai: 'XAI_API_KEY',
 		zai: 'ZAI_API_KEY',
 		'zai-coding': 'ZAI_API_KEY',
+		'glm-direct': 'GLM_API_KEY',
 		groq: 'GROQ_API_KEY',
 		vertex: 'GOOGLE_API_KEY', // Vertex uses the same key as Google
 		'claude-code': 'CLAUDE_CODE_API_KEY', // Not actually used, but included for consistency

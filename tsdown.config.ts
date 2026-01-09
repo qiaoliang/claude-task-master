@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import { baseConfig, mergeConfig } from '@tm/build-config';
 import { config } from 'dotenv';
 import { defineConfig } from 'tsdown';
+import { readFileSync } from 'fs';
 
 // Load .env file explicitly with absolute path
 config({ path: resolve(process.cwd(), '.env') });
@@ -13,7 +14,7 @@ const getBuildTimeEnvs = () => {
 	// Inject package.json version at build time
 	try {
 		const packageJson = JSON.parse(
-			require('fs').readFileSync('package.json', 'utf8')
+			readFileSync('package.json', 'utf8')
 		);
 		envs['TM_PUBLIC_VERSION'] = packageJson.version || 'unknown';
 	} catch (error) {

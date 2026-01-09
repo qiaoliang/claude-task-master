@@ -41,6 +41,7 @@ import {
 	ClaudeCodeProvider,
 	CodexCliProvider,
 	GeminiCliProvider,
+	TMDirectProvider,
 	GoogleAIProvider,
 	GrokCliProvider,
 	GroqProvider,
@@ -61,11 +62,13 @@ import ProviderRegistry from '../../src/provider-registry/index.js';
 
 // Create provider instances
 const PROVIDERS = {
+	'tm-direct': new TMDirectProvider(),
 	anthropic: new AnthropicAIProvider(),
 	perplexity: new PerplexityAIProvider(),
 	google: new GoogleAIProvider(),
 	zai: new ZAIProvider(),
 	'zai-coding': new ZAICodingProvider(),
+	'glm-direct': new GLMDirectProvider(),
 	lmstudio: new LMStudioProvider(),
 	openai: new OpenAIProvider(),
 	xai: new XAIProvider(),

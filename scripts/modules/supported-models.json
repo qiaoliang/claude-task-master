@@ -1,4 +1,17 @@
 {
+	"tm-direct": [
+		{
+			"id": "glm-4.7",
+			"swe_score": 0.75,
+			"cost_per_1m_tokens": {
+				"input": 0.6,
+				"output": 2.2
+			},
+			"allowed_roles": ["main", "fallback", "research"],
+			"max_tokens": 204800,
+			"supported": true
+		}
+	],
 	"anthropic": [
 		{
 			"id": "claude-sonnet-4-20250514",
