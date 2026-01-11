@@ -6,7 +6,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import type { Task, TaskStatus } from '../../../common/types/index.js';
 import { AuthDomain } from '../../auth/auth-domain.js';
 import type { AuthManager } from '../../auth/managers/auth-manager.js';
@@ -673,7 +673,7 @@ export class ExportService {
 
 			// Prepare request body
 			const requestBody = {
-				source: 'task-master-cli',
+				source: 'ztm-cli',
 				options: {
 					dryRun: false,
 					stopOnError: false
@@ -870,7 +870,7 @@ export class ExportService {
 		return this.callGenerateBriefEndpoint({
 			tasks: importTasks,
 			source: {
-				tool: 'task-master',
+				tool: 'ztm',
 				version: this.getVersion(),
 				tag: tag,
 				projectName: projectName
@@ -998,7 +998,7 @@ export class ExportService {
 	}
 
 	/**
-	 * Get the current version of task-master
+	 * Get the current version of ztm
 	 */
 	private getVersion(): string {
 		// Try to get version from package.json or config

@@ -555,9 +555,9 @@ async function initializeProject(options = {}) {
 			// Prompt for response language preference
 			const languageInput = await promptQuestion(
 				rl,
-				chalk.cyan('Preferred response language (English): ')
+				chalk.cyan('Preferred response language (Chinese): ')
 			);
-			const preferredLanguage = languageInput.trim() || 'English';
+			const preferredLanguage = languageInput.trim() || 'Chinese';
 
 			// Confirm settings with cleaner formatting
 			console.log('\n' + chalk.bold('Taskmaster Project Settings:'));
@@ -1113,6 +1113,85 @@ async function createProjectStructure(
 			'Default AI models will be used. You can configure different models later using "ztm models --setup" or "ztm models --set-..." commands.'
 		);
 	}
+
+	// === Check tm-direct Environment Variables ===
+	// If using default tm-direct provider, check for required environment variables
+	if (selectedStorage === 'local' && !dryRun) {
+		try {
+			// Read the generated config file
+			const configPath = path.join(targetDir, '.taskmaster', 'config.json');
+			if (fs.existsSync(configPath)) {
+				const configContent = fs.readFileSync(configPath, 'utf8');
+				const config = JSON.parse(configContent);
+
+				// Check if main model is using tm-direct provider
+				if (config.models?.main?.provider === 'tm-direct') {
+					const envPath = path.join(targetDir, '.env');
+					let envVars = {};
+
+					// Read existing .env file if it exists
+					if (fs.existsSync(envPath)) {
+						const envContent = fs.readFileSync(envPath, 'utf8');
+						envVars = dotenv.parse(envContent);
+					}
+
+					// Check for required environment variables
+					const missingVars = [];
+					if (!envVars.TM_API_KEY) {
+						missingVars.push('TM_API_KEY');
+					}
+
+					// Optional: TM_BASE_URL and TM_MODEL
+					const optionalVars = [];
+					if (!envVars.TM_BASE_URL) {
+						optionalVars.push('TM_BASE_URL');
+					}
+					if (!envVars.TM_MODEL) {
+						optionalVars.push('TM_MODEL');
+					}
+
+					if (missingVars.length > 0) {
+						console.log(
+							boxen(
+								chalk.yellow.bold('⚠️  Missing Required Environment Variables\n\n') +
+									chalk.white('You have selected tm-direct (GLM-4.7) as your main model,\n') +
+									chalk.white('but the following required environment variables are missing:\n\n') +
+									chalk.red('• ' + missingVars.join('\n• ')) +
+									(optionalVars.length > 0
+										? '\n\n' +
+											chalk.dim('Optional variables (will use defaults if not set):\n') +
+											chalk.gray('• ' + optionalVars.join('\n• '))
+										: '') +
+									'\n\n' +
+									chalk.cyan('To fix this, add the following to your ') +
+									chalk.bold.cyan('.env') +
+									chalk.cyan(' file:\n\n') +
+									chalk.green('TM_API_KEY=your_api_key_here\n') +
+									(optionalVars.includes('TM_BASE_URL')
+										? chalk.gray('# TM_BASE_URL=https://open.bigmodel.cn/api/paas/v4\n')
+										: '') +
+									(optionalVars.includes('TM_MODEL')
+										? chalk.gray('# TM_MODEL=glm-4.7\n')
+										: '') +
+									'\n' +
+									chalk.dim('You can get your API key from: https://open.bigmodel.cn/'),
+								{
+									padding: 1,
+									margin: { top: 1, bottom: 0.5 },
+									borderStyle: 'round',
+									borderColor: 'yellow',
+									width: BOX_WIDTH
+								}
+							)
+						);
+					}
+				}
+			}
+		} catch (error) {
+			// Don't fail initialization if config check fails
+			log('debug', 'Could not check tm-direct environment variables:', error.message);
+		}
+	}
 	// ====================================
 
 	// Add shell aliases if requested
@@ -1193,21 +1272,21 @@ async function createProjectStructure(
 
 		if (selectedStorage === 'cloud') {
 			// Hamster-specific workflow
-			gettingStartedMessage = `${chalk.cyan.bold("Here's how to execute your Hamster briefs with Taskmaster")}\n\n${chalk.white('1. ')}${chalk.yellow(
+			gettingStartedMessage = `${chalk.cyan.bold("Here's how to execute your Hamster briefs with ZTM")}\n\n${chalk.white('1. ')}${chalk.yellow(
 				'Create your first brief at'
 			)} ${chalk.cyan.underline('https://tryhamster.com')}\n${chalk.white('   └─ ')}${chalk.dim('Hamster will write your brief and generate the full task plan')}\n${chalk.white('2. ')}${chalk.yellow(
 				'Add rules for your AI IDE(s)'
-			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm rules --setup')}${chalk.dim(' - Opens interactive setup')}\n${chalk.white('3. ')}${chalk.yellow(
-				'Connect your brief to Taskmaster'
-			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm context <brief-url> OR tm briefs')}\n${chalk.white('4. ')}${chalk.yellow(
+			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm rules --setup')}${chalk.dim(' - Opens interactive setup')}\n${chalk.white('3. ')}${chalk.yellow(
+				'Connect your brief to ZTM'
+			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm context <brief-url> OR ztm briefs')}\n${chalk.white('4. ')}${chalk.yellow(
 				'View your tasks from the brief'
-			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm list')}${chalk.dim(' or ')}${chalk.cyan('tm list all')}${chalk.dim(' (with subtasks)')}\n${chalk.white('5. ')}${chalk.yellow(
+			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm list')}${chalk.dim(' or ')}${chalk.cyan('ztm list all')}${chalk.dim(' (with subtasks)')}\n${chalk.white('5. ')}${chalk.yellow(
 				'Work on tasks with any AI coding assistant or background agent'
-			)}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm next')}${chalk.dim(' - Find the next task to work on')}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm show <id>')}${chalk.dim(' - View task details')}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm status <id> in-progress')}${chalk.dim(' - Mark task started')}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm status <id> done')}${chalk.dim(' - Mark task complete')}\n${chalk.white('6. ')}${chalk.yellow(
+			)}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm next')}${chalk.dim(' - Find the next task to work on')}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm show <id>')}${chalk.dim(' - View task details')}\n${chalk.white('   ├─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm set-status <id> in-progress')}${chalk.dim(' - Mark task started')}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm set-status <id> done')}${chalk.dim(' - Mark task complete')}\n${chalk.white('6. ')}${chalk.yellow(
 				'Add notes or updates to tasks'
-			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('tm update-task <id> <notes>')}\n${chalk.white('7. ')}${chalk.green.bold('Ship it!')}\n\n${chalk.dim(
+			)}\n${chalk.white('   └─ ')}${chalk.dim('CLI: ')}${chalk.cyan('ztm update-task <id> <notes>')}\n${chalk.white('7. ')}${chalk.green.bold('Ship it!')}\n\n${chalk.dim(
 				'* Run '
-			)}${chalk.cyan('tm help')}${chalk.dim(' to see all available commands')}`;
+			)}${chalk.cyan('ztm --help')}${chalk.dim(' to see all available commands')}`;
 		} else {
 			// Local-specific getting started
 			gettingStartedMessage = `${chalk.cyan.bold('Things you should do next:')}\n\n${chalk.white('1. ')}${chalk.yellow(

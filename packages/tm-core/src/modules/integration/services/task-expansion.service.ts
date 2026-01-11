@@ -7,7 +7,7 @@ import { z } from 'zod';
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import { getLogger } from '../../../common/logger/factory.js';
 import { AuthManager } from '../../auth/managers/auth-manager.js';
 import { ApiClient } from '../../storage/utils/api-client.js';

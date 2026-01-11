@@ -6,7 +6,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 
 export interface ParsedBriefUrl {
 	orgSlug: string | null;

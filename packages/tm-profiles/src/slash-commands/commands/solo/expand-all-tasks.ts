@@ -22,7 +22,7 @@ Intelligently expands all tasks that would benefit from breakdown.
 ## Execution
 
 \`\`\`bash
-task-master expand --all
+ztm expand --all
 \`\`\`
 
 ## Smart Selection

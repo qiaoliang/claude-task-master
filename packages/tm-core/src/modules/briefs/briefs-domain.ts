@@ -6,7 +6,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../common/errors/task-master-error.js';
+} from '../../common/errors/tm-error.js';
 import { AuthManager } from '../auth/managers/auth-manager.js';
 import type { TaskRepository } from '../tasks/repositories/task-repository.interface.js';
 import { BriefService, type TagWithStats } from './services/brief-service.js';

@@ -32,7 +32,7 @@ This command validates task completion and updates project state intelligently.
 ## Execution
 
 \`\`\`bash
-task-master set-status --id=$ARGUMENTS --status=done
+ztm set-status --id=$ARGUMENTS --status=done
 \`\`\`
 
 ## Post-Completion Actions

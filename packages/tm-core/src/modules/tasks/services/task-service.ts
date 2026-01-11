@@ -13,7 +13,7 @@ import type { IStorage } from '../../../common/interfaces/storage.interface.js';
 import { ConfigManager } from '../../config/managers/config-manager.js';
 import { StorageFactory } from '../../storage/services/storage-factory.js';
 import { TaskEntity } from '../entities/task.entity.js';
-import { ERROR_CODES, TaskMasterError } from '../../../common/errors/task-master-error.js';
+import { ERROR_CODES, TaskMasterError } from '../../../common/errors/tm-error.js';
 import { getLogger } from '../../../common/logger/factory.js';
 import type { ExpandTaskResult } from '../../integration/services/task-expansion.service.js';
 

@@ -11,7 +11,7 @@ describe('WorkflowStateManager', () => {
 	describe('getProjectIdentifier', () => {
 		it('should sanitize paths like Claude Code', () => {
 			const projectRoot =
-				'/Volumes/Workspace/workspace/contrib/task-master/demos/nextjs-todo-tdd';
+				'/Volumes/Workspace/workspace/contrib/ztm/demos/nextjs-todo-tdd';
 			const manager = new WorkflowStateManager(projectRoot);
 
 			const sessionDir = manager.getSessionDir();
@@ -21,7 +21,7 @@ describe('WorkflowStateManager', () => {
 			const expectedPath = path.join(
 				homeDir,
 				'.taskmaster',
-				'-Volumes-Workspace-workspace-contrib-task-master-demos-nextjs-todo-tdd',
+				'-Volumes-Workspace-workspace-contrib-ztm-demos-nextjs-todo-tdd',
 				'sessions'
 			);
 
@@ -56,8 +56,8 @@ describe('WorkflowStateManager', () => {
 		});
 
 		it('should create unique identifiers for different paths', () => {
-			const project1 = '/Users/alice/task-master';
-			const project2 = '/Users/bob/task-master';
+			const project1 = '/Users/alice/ztm';
+			const project2 = '/Users/bob/ztm';
 
 			const manager1 = new WorkflowStateManager(project1);
 			const manager2 = new WorkflowStateManager(project2);

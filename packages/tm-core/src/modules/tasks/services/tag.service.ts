@@ -5,7 +5,7 @@
 
 import type { IStorage } from '../../../common/interfaces/storage.interface.js';
 import type { TagInfo } from '../../../common/interfaces/storage.interface.js';
-import { TaskMasterError, ERROR_CODES } from '../../../common/errors/task-master-error.js';
+import { TaskMasterError, ERROR_CODES } from '../../../common/errors/tm-error.js';
 
 /**
  * Options for creating a new tag

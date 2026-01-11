@@ -34,7 +34,7 @@ Permanently removes a task while maintaining project integrity.
 ## Execution
 
 \`\`\`bash
-task-master remove-task --id=<id> [-y]
+ztm remove-task --id=<id> [-y]
 \`\`\`
 
 ## Pre-Removal Analysis

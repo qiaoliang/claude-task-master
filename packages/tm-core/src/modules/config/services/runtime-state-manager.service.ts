@@ -8,7 +8,7 @@ import path from 'node:path';
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import { DEFAULT_CONFIG_VALUES } from '../../../common/interfaces/configuration.interface.js';
 import { getLogger } from '../../../common/logger/index.js';
 

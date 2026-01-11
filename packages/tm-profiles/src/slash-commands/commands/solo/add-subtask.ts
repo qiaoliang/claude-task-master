@@ -36,12 +36,12 @@ Flexible natural language:
 
 ### 1. Create New Subtask
 \`\`\`bash
-task-master add-subtask --parent=<id> --title="<title>" --description="<desc>"
+ztm add-subtask --parent=<id> --title="<title>" --description="<desc>"
 \`\`\`
 
 ### 2. Convert Existing Task
 \`\`\`bash
-task-master add-subtask --parent=<id> --task-id=<existing-id>
+ztm add-subtask --parent=<id> --task-id=<existing-id>
 \`\`\`
 
 ## Smart Features

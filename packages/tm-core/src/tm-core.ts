@@ -15,7 +15,7 @@ import { WorkflowDomain } from './modules/workflow/workflow-domain.js';
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from './common/errors/task-master-error.js';
+} from './common/errors/tm-error.js';
 import type { IConfiguration } from './common/interfaces/configuration.interface.js';
 import {
 	type Logger,

@@ -5,7 +5,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import type {
 	IConfiguration,
 	RuntimeStorageConfig,

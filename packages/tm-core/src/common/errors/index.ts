@@ -10,7 +10,7 @@ export {
 	type ErrorCode,
 	type ErrorContext,
 	type SerializableError
-} from './task-master-error.js';
+} from './tm-error.js';
 
 // Error implementations will be defined here
 // export * from './task-errors.js';

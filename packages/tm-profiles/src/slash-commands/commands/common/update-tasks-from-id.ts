@@ -33,7 +33,7 @@ Update multiple related tasks based on new requirements or context changes.
 ## Execution
 
 \`\`\`bash
-task-master update --from=<id> --prompt="<context>"
+ztm update --from=<id> --prompt="<context>"
 \`\`\`
 
 ## Update Process

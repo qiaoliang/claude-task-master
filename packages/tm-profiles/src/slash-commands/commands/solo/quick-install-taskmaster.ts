@@ -19,21 +19,21 @@ Execute this streamlined installation:
 
 \`\`\`bash
 # Check and install in one command
-task-master --version 2>/dev/null || npm install -g ztm-ai
+ztm --version 2>/dev/null || npm install -g ztm-ai
 
 # Verify installation
-task-master --version
+ztm --version
 
 # Quick setup check
-task-master models --status || echo "Note: You'll need to set up an AI provider API key"
+ztm models --status || echo "Note: You'll need to set up an AI provider API key"
 \`\`\`
 
 If you see "command not found" after installation, you may need to:
 1. Restart your terminal
 2. Or add npm global bin to PATH: \`export PATH=$(npm bin -g):$PATH\`
 
-Once installed, you can use all the Task Master commands!
+Once installed, you can use all the ZTM commands!
 
-Quick test: Run \`/taskmaster:help\` to see all available commands.`,
+Quick test: Run \`/ztm:help\` to see all available commands.`,
 	mode: 'solo'
 });

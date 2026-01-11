@@ -7,7 +7,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import { getLogger } from '../../../common/logger/factory.js';
 import type { Task } from '../../../common/types/index.js';
 import { AuthManager } from '../../auth/managers/auth-manager.js';

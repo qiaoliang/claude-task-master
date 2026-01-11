@@ -2,7 +2,7 @@
  * @fileoverview Task entity with business rules and domain logic
  */
 
-import { ERROR_CODES, TaskMasterError } from '../../../common/errors/task-master-error.js';
+import { ERROR_CODES, TaskMasterError } from '../../../common/errors/tm-error.js';
 import type {
 	Subtask,
 	Task,

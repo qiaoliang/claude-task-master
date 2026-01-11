@@ -52,7 +52,7 @@ export function registerComplexityReportTool(server) {
 
 				if (!reportPath) {
 					return createErrorResponse(
-						'No complexity report found. Run task-master analyze-complexity first.'
+						'No complexity report found. Run ztm analyze-complexity first.'
 					);
 				}
 

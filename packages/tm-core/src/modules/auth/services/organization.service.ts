@@ -7,7 +7,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import { getLogger } from '../../../common/logger/index.js';
 import type { Database } from '../../../common/types/database.types.js';
 import type { Brief } from '../../briefs/types.js';

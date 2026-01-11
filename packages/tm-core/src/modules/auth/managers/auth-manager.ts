@@ -6,7 +6,7 @@
 import {
 	ERROR_CODES,
 	TaskMasterError
-} from '../../../common/errors/task-master-error.js';
+} from '../../../common/errors/tm-error.js';
 import { getLogger } from '../../../common/logger/index.js';
 import type { Brief } from '../../briefs/types.js';
 import { SupabaseAuthClient } from '../../integration/clients/supabase-client.js';
