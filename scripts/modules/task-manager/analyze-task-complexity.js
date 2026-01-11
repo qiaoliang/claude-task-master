@@ -348,9 +348,9 @@ async function analyzeTaskComplexity(options, context = {}) {
 					boxen(
 						chalk.white.bold('Suggested Next Steps:') +
 							'\n\n' +
-							`${chalk.cyan('1.')} Run ${chalk.yellow('task-master complexity-report')} to review detailed findings\n` +
-							`${chalk.cyan('2.')} Run ${chalk.yellow('task-master expand --id=<id>')} to break down complex tasks\n` +
-							`${chalk.cyan('3.')} Run ${chalk.yellow('task-master expand --all')} to expand all pending tasks based on complexity`,
+							`${chalk.cyan('1.')} Run ${chalk.yellow('ztm complexity-report')} to review detailed findings\n` +
+							`${chalk.cyan('2.')} Run ${chalk.yellow('ztm expand --id=<id>')} to break down complex tasks\n` +
+							`${chalk.cyan('3.')} Run ${chalk.yellow('ztm expand --all')} to expand all pending tasks based on complexity`,
 						{
 							padding: 1,
 							borderColor: 'cyan',
@@ -567,9 +567,9 @@ async function analyzeTaskComplexity(options, context = {}) {
 					boxen(
 						chalk.white.bold('Suggested Next Steps:') +
 							'\n\n' +
-							`${chalk.cyan('1.')} Run ${chalk.yellow('task-master complexity-report')} to review detailed findings\n` +
-							`${chalk.cyan('2.')} Run ${chalk.yellow('task-master expand --id=<id>')} to break down complex tasks\n` +
-							`${chalk.cyan('3.')} Run ${chalk.yellow('task-master expand --all')} to expand all pending tasks based on complexity`,
+							`${chalk.cyan('1.')} Run ${chalk.yellow('ztm complexity-report')} to review detailed findings\n` +
+							`${chalk.cyan('2.')} Run ${chalk.yellow('ztm expand --id=<id>')} to break down complex tasks\n` +
+							`${chalk.cyan('3.')} Run ${chalk.yellow('ztm expand --all')} to expand all pending tasks based on complexity`,
 						{
 							padding: 1,
 							borderColor: 'cyan',
@@ -611,7 +611,7 @@ async function analyzeTaskComplexity(options, context = {}) {
 						)
 					);
 					console.log(
-						chalk.yellow("Run 'task-master models --setup' if needed.")
+						chalk.yellow("Run 'ztm models --setup' if needed.")
 					);
 				}
 			}

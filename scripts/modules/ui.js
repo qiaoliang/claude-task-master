@@ -921,19 +921,19 @@ function displayHelp() {
 			chalk.white.bold('Quick Start:') +
 				'\n\n' +
 				chalk.cyan('1. Create Project: ') +
-				chalk.white('task-master init') +
+				chalk.white('ztm init') +
 				'\n' +
 				chalk.cyan('2. Setup Models: ') +
-				chalk.white('task-master models --setup') +
+				chalk.white('ztm models --setup') +
 				'\n' +
 				chalk.cyan('3. Parse PRD: ') +
-				chalk.white('task-master parse-prd --input=<prd-file>') +
+				chalk.white('ztm parse-prd --input=<prd-file>') +
 				'\n' +
 				chalk.cyan('4. List Tasks: ') +
-				chalk.white('task-master list') +
+				chalk.white('ztm list') +
 				'\n' +
 				chalk.cyan('5. Find Next Task: ') +
-				chalk.white('task-master next'),
+				chalk.white('ztm next'),
 			{
 				padding: 1,
 				borderColor: 'yellow',
@@ -1200,7 +1200,7 @@ async function displayNextTask(
 				chalk.yellow('No subtasks found. Consider breaking down this task:') +
 					'\n' +
 					chalk.white(
-						`Run: ${chalk.cyan(`task-master expand --id=${nextTask.id}`)}`
+						`Run: ${chalk.cyan(`ztm expand --id=${nextTask.id}`)}`
 					),
 				{
 					padding: { top: 0, bottom: 0, left: 1, right: 1 },
@@ -1217,17 +1217,17 @@ async function displayNextTask(
 	if (isSubtask) {
 		// Suggested actions for a subtask
 		suggestedActionsContent +=
-			`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`task-master set-status ${nextTask.id} in-progress`)}\n` +
-			`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`task-master set-status ${nextTask.id} done`)}\n` +
-			`${chalk.cyan('3.')} View parent task: ${chalk.yellow(`task-master show ${nextTask.parentId}`)}`;
+			`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`ztm set-status ${nextTask.id} in-progress`)}\n` +
+			`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`ztm set-status ${nextTask.id} done`)}\n` +
+			`${chalk.cyan('3.')} View parent task: ${chalk.yellow(`ztm show ${nextTask.parentId}`)}`;
 	} else {
 		// Suggested actions for a parent task
 		suggestedActionsContent +=
-			`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`task-master set-status ${nextTask.id} in-progress`)}\n` +
-			`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`task-master set-status ${nextTask.id} done`)}\n` +
+			`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`ztm set-status ${nextTask.id} in-progress`)}\n` +
+			`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`ztm set-status ${nextTask.id} done`)}\n` +
 			(nextTask.subtasks && nextTask.subtasks.length > 0
-				? `${chalk.cyan('3.')} Update subtask status: ${chalk.yellow(`task-master set-status ${nextTask.id}.1 done`)}` // Example: first subtask
-				: `${chalk.cyan('3.')} Break down into subtasks: ${chalk.yellow(`task-master expand --id=${nextTask.id}`)}`);
+				? `${chalk.cyan('3.')} Update subtask status: ${chalk.yellow(`ztm set-status ${nextTask.id}.1 done`)}` // Example: first subtask
+				: `${chalk.cyan('3.')} Break down into subtasks: ${chalk.yellow(`ztm expand --id=${nextTask.id}`)}`);
 	}
 
 	console.log(
@@ -1363,9 +1363,9 @@ async function displayTaskById(
 			boxen(
 				chalk.white.bold('Suggested Actions:') +
 					'\n' +
-					`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`task-master set-status ${task.parentTask.id}.${task.id} in-progress`)}\n` +
-					`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`task-master set-status ${task.parentTask.id}.${task.id} done`)}\n` +
-					`${chalk.cyan('3.')} View parent task: ${chalk.yellow(`task-master show ${task.parentTask.id}`)}`,
+					`${chalk.cyan('1.')} Mark as in-progress: ${chalk.yellow(`ztm set-status ${task.parentTask.id}.${task.id} in-progress`)}\n` +
+					`${chalk.cyan('2.')} Mark as done when completed: ${chalk.yellow(`ztm set-status ${task.parentTask.id}.${task.id} done`)}\n` +
+					`${chalk.cyan('3.')} View parent task: ${chalk.yellow(`ztm show ${task.parentTask.id}`)}`,
 				{
 					padding: { top: 0, bottom: 0, left: 1, right: 1 },
 					borderColor: 'green',
@@ -1604,7 +1604,7 @@ async function displayTaskById(
 					chalk.yellow('No subtasks found. Consider breaking down this task:') +
 						'\n' +
 						chalk.white(
-							`Run: ${chalk.cyan(`task-master expand --id=${task.id}`)}`
+							`Run: ${chalk.cyan(`ztm expand --id=${task.id}`)}`
 						),
 					{
 						padding: { top: 0, bottom: 0, left: 1, right: 1 },
@@ -1696,22 +1696,22 @@ async function displayTaskById(
 
 	// Basic actions
 	actions.push(
-		`${chalk.cyan(`${actionNumber}.`)} Mark as in-progress: ${chalk.yellow(`task-master set-status ${task.id} in-progress`)}`
+		`${chalk.cyan(`${actionNumber}.`)} Mark as in-progress: ${chalk.yellow(`ztm set-status ${task.id} in-progress`)}`
 	);
 	actionNumber++;
 	actions.push(
-		`${chalk.cyan(`${actionNumber}.`)} Mark as done when completed: ${chalk.yellow(`task-master set-status ${task.id} done`)}`
+		`${chalk.cyan(`${actionNumber}.`)} Mark as done when completed: ${chalk.yellow(`ztm set-status ${task.id} done`)}`
 	);
 	actionNumber++;
 
 	// Subtask-related action
 	if (subtasksForProgress && subtasksForProgress.length > 0) {
 		actions.push(
-			`${chalk.cyan(`${actionNumber}.`)} Update subtask status: ${chalk.yellow(`task-master set-status ${task.id}.1 done`)}`
+			`${chalk.cyan(`${actionNumber}.`)} Update subtask status: ${chalk.yellow(`ztm set-status ${task.id}.1 done`)}`
 		);
 	} else {
 		actions.push(
-			`${chalk.cyan(`${actionNumber}.`)} Break down into subtasks: ${chalk.yellow(`task-master expand --id=${task.id}`)}`
+			`${chalk.cyan(`${actionNumber}.`)} Break down into subtasks: ${chalk.yellow(`ztm expand --id=${task.id}`)}`
 		);
 	}
 	actionNumber++;
@@ -1720,7 +1720,7 @@ async function displayTaskById(
 	if (task.complexityScore) {
 		const complexityScore = task.complexityScore;
 		actions.push(
-			`${chalk.cyan(`${actionNumber}.`)} Re-analyze complexity: ${chalk.yellow(`task-master analyze-complexity --id=${task.id}`)}`
+			`${chalk.cyan(`${actionNumber}.`)} Re-analyze complexity: ${chalk.yellow(`ztm analyze-complexity --id=${task.id}`)}`
 		);
 		actionNumber++;
 
@@ -1728,31 +1728,31 @@ async function displayTaskById(
 		if (complexityScore >= 7) {
 			// High complexity - suggest scoping down
 			actions.push(
-				`${chalk.cyan(`${actionNumber}.`)} Scope down (simplify): ${chalk.yellow(`task-master scope-down --id=${task.id} --strength=regular`)}`
+				`${chalk.cyan(`${actionNumber}.`)} Scope down (simplify): ${chalk.yellow(`ztm scope-down --id=${task.id} --strength=regular`)}`
 			);
 			actionNumber++;
 			if (complexityScore >= 9) {
 				actions.push(
-					`${chalk.cyan(`${actionNumber}.`)} Heavy scope down: ${chalk.yellow(`task-master scope-down --id=${task.id} --strength=heavy`)}`
+					`${chalk.cyan(`${actionNumber}.`)} Heavy scope down: ${chalk.yellow(`ztm scope-down --id=${task.id} --strength=heavy`)}`
 				);
 				actionNumber++;
 			}
 		} else if (complexityScore <= 4) {
 			// Low complexity - suggest scoping up
 			actions.push(
-				`${chalk.cyan(`${actionNumber}.`)} Scope up (add detail): ${chalk.yellow(`task-master scope-up --id=${task.id} --strength=regular`)}`
+				`${chalk.cyan(`${actionNumber}.`)} Scope up (add detail): ${chalk.yellow(`ztm scope-up --id=${task.id} --strength=regular`)}`
 			);
 			actionNumber++;
 			if (complexityScore <= 2) {
 				actions.push(
-					`${chalk.cyan(`${actionNumber}.`)} Heavy scope up: ${chalk.yellow(`task-master scope-up --id=${task.id} --strength=heavy`)}`
+					`${chalk.cyan(`${actionNumber}.`)} Heavy scope up: ${chalk.yellow(`ztm scope-up --id=${task.id} --strength=heavy`)}`
 				);
 				actionNumber++;
 			}
 		} else {
 			// Medium complexity (5-6) - offer both options
 			actions.push(
-				`${chalk.cyan(`${actionNumber}.`)} Scope up/down: ${chalk.yellow(`task-master scope-up --id=${task.id} --strength=light`)} or ${chalk.yellow(`scope-down --id=${task.id} --strength=light`)}`
+				`${chalk.cyan(`${actionNumber}.`)} Scope up/down: ${chalk.yellow(`ztm scope-up --id=${task.id} --strength=light`)} or ${chalk.yellow(`scope-down --id=${task.id} --strength=light`)}`
 			);
 			actionNumber++;
 		}
@@ -1807,7 +1807,7 @@ async function displayComplexityReport(reportPath) {
 			const tasksPath = TASKMASTER_TASKS_FILE;
 			if (!fs.existsSync(tasksPath)) {
 				console.error(
-					'❌ No tasks.json file found. Please run "task-master init" or create a tasks.json file.'
+					'❌ No tasks.json file found. Please run "ztm init" or create a tasks.json file.'
 				);
 				return null;
 			}
@@ -1953,7 +1953,7 @@ async function displayComplexityReport(reportPath) {
 
 	// When adding rows, don't truncate the expansion command
 	tasksNeedingExpansion.forEach((task) => {
-		const expansionCommand = `task-master expand --id=${task.taskId} --num=${task.recommendedSubtasks}${task.expansionPrompt ? ` --prompt="${task.expansionPrompt}"` : ''}`;
+		const expansionCommand = `ztm expand --id=${task.taskId} --num=${task.recommendedSubtasks}${task.expansionPrompt ? ` --prompt="${task.expansionPrompt}"` : ''}`;
 
 		complexTable.push([
 			task.taskId,
@@ -2005,9 +2005,9 @@ async function displayComplexityReport(reportPath) {
 		boxen(
 			chalk.white.bold('Suggested Actions:') +
 				'\n\n' +
-				`${chalk.cyan('1.')} Expand all complex tasks: ${chalk.yellow(`task-master expand --all`)}\n` +
-				`${chalk.cyan('2.')} Expand a specific task: ${chalk.yellow(`task-master expand --id=<id>`)}\n` +
-				`${chalk.cyan('3.')} Regenerate with research: ${chalk.yellow(`task-master analyze-complexity --research`)}`,
+				`${chalk.cyan('1.')} Expand all complex tasks: ${chalk.yellow(`ztm expand --all`)}\n` +
+				`${chalk.cyan('2.')} Expand a specific task: ${chalk.yellow(`ztm expand --id=<id>`)}\n` +
+				`${chalk.cyan('3.')} Regenerate with research: ${chalk.yellow(`ztm analyze-complexity --research`)}`,
 			{
 				padding: 1,
 				borderColor: 'cyan',
@@ -2276,23 +2276,23 @@ function displayAvailableModels(availableModels) {
 			chalk.white.bold('Next Steps:') +
 				'\n' +
 				chalk.cyan(
-					`1. Set main model: ${chalk.yellow('task-master models --set-main <model_id>')}`
+					`1. Set main model: ${chalk.yellow('ztm models --set-main <model_id>')}`
 				) +
 				'\n' +
 				chalk.cyan(
-					`2. Set research model: ${chalk.yellow('task-master models --set-research <model_id>')}`
+					`2. Set research model: ${chalk.yellow('ztm models --set-research <model_id>')}`
 				) +
 				'\n' +
 				chalk.cyan(
-					`3. Set fallback model: ${chalk.yellow('task-master models --set-fallback <model_id>')}`
+					`3. Set fallback model: ${chalk.yellow('ztm models --set-fallback <model_id>')}`
 				) +
 				'\n' +
 				chalk.cyan(
-					`4. Run interactive setup: ${chalk.yellow('task-master models --setup')}`
+					`4. Run interactive setup: ${chalk.yellow('ztm models --setup')}`
 				) +
 				'\n' +
 				chalk.cyan(
-					`5. Use custom ollama/openrouter models: ${chalk.yellow('task-master models --openrouter|ollama --set-main|research|fallback <model_id>')}`
+					`5. Use custom ollama/openrouter models: ${chalk.yellow('ztm models --openrouter|ollama --set-main|research|fallback <model_id>')}`
 				),
 			{
 				padding: 1,
@@ -2633,7 +2633,7 @@ async function displayMultipleTasksSummary(
 				case '1':
 					console.log(
 						chalk.blue(
-							`\n→ Command: task-master set-status ${taskIdList} in-progress`
+							`\n→ Command: ztm set-status ${taskIdList} in-progress`
 						)
 					);
 					console.log(
@@ -2644,14 +2644,14 @@ async function displayMultipleTasksSummary(
 					break;
 				case '2':
 					console.log(
-						chalk.blue(`\n→ Command: task-master set-status ${taskIdList} done`)
+						chalk.blue(`\n→ Command: ztm set-status ${taskIdList} done`)
 					);
 					console.log(
 						chalk.green('✓ Copy and run this command to mark all tasks as done')
 					);
 					break;
 				case '3':
-					console.log(chalk.blue(`\n→ Command: task-master next`));
+					console.log(chalk.blue(`\n→ Command: ztm next`));
 					console.log(
 						chalk.green(
 							'✓ Copy and run this command to see the next available task'
@@ -2661,7 +2661,7 @@ async function displayMultipleTasksSummary(
 				case '4':
 					console.log(
 						chalk.blue(
-							`\n→ Command: task-master expand --id=${taskIdList} --research`
+							`\n→ Command: ztm expand --id=${taskIdList} --research`
 						)
 					);
 					console.log(
@@ -2690,7 +2690,7 @@ async function displayMultipleTasksSummary(
 					break;
 				}
 				case '6':
-					console.log(chalk.blue(`\n→ Command: task-master generate`));
+					console.log(chalk.blue(`\n→ Command: ztm generate`));
 					console.log(
 						chalk.green('✓ Copy and run this command to generate task files')
 					);
@@ -2718,9 +2718,9 @@ async function displayMultipleTasksSummary(
 			boxen(
 				chalk.white.bold('Suggested Actions:') +
 					'\n' +
-					`${chalk.cyan('1.')} View full details: ${chalk.yellow(`task-master show ${task.id}`)}\n` +
-					`${chalk.cyan('2.')} Mark as in-progress: ${chalk.yellow(`task-master set-status ${task.id} in-progress`)}\n` +
-					`${chalk.cyan('3.')} Mark as done: ${chalk.yellow(`task-master set-status ${task.id} done`)}`,
+					`${chalk.cyan('1.')} View full details: ${chalk.yellow(`ztm show ${task.id}`)}\n` +
+					`${chalk.cyan('2.')} Mark as in-progress: ${chalk.yellow(`ztm set-status ${task.id} in-progress`)}\n` +
+					`${chalk.cyan('3.')} Mark as done: ${chalk.yellow(`ztm set-status ${task.id} done`)}`,
 				{
 					padding: { top: 0, bottom: 0, left: 1, right: 1 },
 					borderColor: 'green',
@@ -2883,17 +2883,17 @@ export function displayCrossTagDependencyError(
 
 	console.log(chalk.cyan(`\nResolution options:`));
 	console.log(
-		`  1. Move with dependencies: task-master move --from=${sourceIds} --from-tag=${sourceTag} --to-tag=${targetTag} --with-dependencies`
+		`  1. Move with dependencies: ztm move --from=${sourceIds} --from-tag=${sourceTag} --to-tag=${targetTag} --with-dependencies`
 	);
 	console.log(
-		`  2. Break dependencies: task-master move --from=${sourceIds} --from-tag=${sourceTag} --to-tag=${targetTag} --ignore-dependencies`
+		`  2. Break dependencies: ztm move --from=${sourceIds} --from-tag=${sourceTag} --to-tag=${targetTag} --ignore-dependencies`
 	);
 	console.log(
-		`  3. Validate and fix dependencies: task-master validate-dependencies && task-master fix-dependencies`
+		`  3. Validate and fix dependencies: ztm validate-dependencies && ztm fix-dependencies`
 	);
 	if (conflicts.length > 0) {
 		console.log(
-			`  4. Move dependencies first: task-master move --from=${conflicts.map((c) => c.dependencyId).join(',')} --from-tag=${conflicts[0].dependencyTag} --to-tag=${targetTag}`
+			`  4. Move dependencies first: ztm move --from=${conflicts.map((c) => c.dependencyId).join(',')} --from-tag=${conflicts[0].dependencyTag} --to-tag=${targetTag}`
 		);
 	}
 }
@@ -2955,13 +2955,13 @@ export function displaySubtaskMoveError(taskId, sourceTag, targetTag) {
 
 	console.log(chalk.cyan(`\nResolution options:`));
 	console.log(
-		`  1. Promote subtask to full task: task-master remove-subtask --id=${displayTaskId} --convert`
+		`  1. Promote subtask to full task: ztm remove-subtask --id=${displayTaskId} --convert`
 	);
 	console.log(
-		`  2. Then move the promoted task: task-master move --from=${parentId} --from-tag=${sourceTag} --to-tag=${targetTag}`
+		`  2. Then move the promoted task: ztm move --from=${parentId} --from-tag=${sourceTag} --to-tag=${targetTag}`
 	);
 	console.log(
-		`  3. Or move the parent task with all subtasks: task-master move --from=${parentId} --from-tag=${sourceTag} --to-tag=${targetTag} --with-dependencies`
+		`  3. Or move the parent task with all subtasks: ztm move --from=${parentId} --from-tag=${sourceTag} --to-tag=${targetTag} --with-dependencies`
 	);
 }
 
@@ -2985,9 +2985,9 @@ export function displayInvalidTagCombinationError(
 	console.log(chalk.cyan(`\nResolution options:`));
 	console.log(`  1. Use different tags for cross-tag moves`);
 	console.log(
-		`  2. Use within-tag move: task-master move --from=<id> --to=<id> --tag=${sourceTag}`
+		`  2. Use within-tag move: ztm move --from=<id> --to=<id> --tag=${sourceTag}`
 	);
-	console.log(`  3. Check available tags: task-master tags`);
+	console.log(`  3. Check available tags: ztm tags`);
 }
 
 /**
@@ -2997,19 +2997,19 @@ export function displayInvalidTagCombinationError(
 export function displayDependencyValidationHints(context = 'general') {
 	const hints = {
 		'before-move': [
-			'💡 Tip: Run "task-master validate-dependencies" to check for dependency issues before moving tasks',
-			'💡 Tip: Use "task-master fix-dependencies" to automatically resolve common dependency problems',
+			'💡 Tip: Run "ztm validate-dependencies" to check for dependency issues before moving tasks',
+			'💡 Tip: Use "ztm fix-dependencies" to automatically resolve common dependency problems',
 			'💡 Tip: Consider using --with-dependencies flag to move dependent tasks together'
 		],
 		'after-error': [
-			'🔧 Quick fix: Run "task-master validate-dependencies" to identify specific issues',
-			'🔧 Quick fix: Use "task-master fix-dependencies" to automatically resolve problems',
-			'🔧 Quick fix: Check "task-master show <id>" to see task dependencies before moving'
+			'🔧 Quick fix: Run "ztm validate-dependencies" to identify specific issues',
+			'🔧 Quick fix: Use "ztm fix-dependencies" to automatically resolve problems',
+			'🔧 Quick fix: Check "ztm show <id>" to see task dependencies before moving'
 		],
 		general: [
-			'💡 Use "task-master validate-dependencies" to check for dependency issues',
-			'💡 Use "task-master fix-dependencies" to automatically resolve problems',
-			'💡 Use "task-master show <id>" to view task dependencies',
+			'💡 Use "ztm validate-dependencies" to check for dependency issues',
+			'💡 Use "ztm fix-dependencies" to automatically resolve problems',
+			'💡 Use "ztm show <id>" to view task dependencies',
 			'💡 Use --with-dependencies flag to move dependent tasks together'
 		]
 	};

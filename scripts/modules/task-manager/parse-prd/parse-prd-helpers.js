@@ -366,8 +366,8 @@ export function displayNonStreamingCliOutput({
 		boxen(
 			chalk.white.bold('Next Steps:') +
 				'\n\n' +
-				`${chalk.cyan('1.')} Run ${chalk.yellow('task-master list')} to view all tasks\n` +
-				`${chalk.cyan('2.')} Run ${chalk.yellow('task-master expand --id=<id>')} to break down a task into subtasks`,
+				`${chalk.cyan('1.')} Run ${chalk.yellow('ztm list')} to view all tasks\n` +
+				`${chalk.cyan('2.')} Run ${chalk.yellow('ztm expand --id=<id>')} to break down a task into subtasks`,
 			{
 				padding: 1,
 				borderColor: 'cyan',

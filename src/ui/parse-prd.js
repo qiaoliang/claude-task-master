@@ -467,9 +467,9 @@ function displayNextSteps() {
 	const stepsContent =
 		chalk.white.bold('Next Steps:') +
 		'\n\n' +
-		`${chalk.cyan('1.')} Run ${chalk.yellow('task-master list')} to view all tasks\n` +
-		`${chalk.cyan('2.')} Run ${chalk.yellow('task-master expand --id=<id>')} to break down a task into subtasks\n` +
-		`${chalk.cyan('3.')} Run ${chalk.yellow('task-master analyze-complexity')} to analyze task complexity`;
+		`${chalk.cyan('1.')} Run ${chalk.yellow('ztm list')} to view all tasks\n` +
+		`${chalk.cyan('2.')} Run ${chalk.yellow('ztm expand --id=<id>')} to break down a task into subtasks\n` +
+		`${chalk.cyan('3.')} Run ${chalk.yellow('ztm analyze-complexity')} to analyze task complexity`;
 
 	console.log(boxen(stepsContent, BOX_STYLES.nextSteps));
 }

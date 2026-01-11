@@ -1722,7 +1722,7 @@ function validateSubtaskMove(taskId, sourceTag, targetTag) {
 			`Cannot move subtask ${taskId} directly between tags.
 
 First promote it to a full task using:
-  task-master remove-subtask --id=${taskId} --convert`,
+  ztm remove-subtask --id=${taskId} --convert`,
 			{
 				taskId,
 				sourceTag,
