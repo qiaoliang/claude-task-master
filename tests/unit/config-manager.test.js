@@ -118,21 +118,21 @@ const MOCK_CONFIG_PATH = path.join(
 const DEFAULT_CONFIG = {
 	models: {
 		main: {
-			provider: 'anthropic',
-			modelId: 'claude-sonnet-4-20250514',
-			maxTokens: 64000,
+			provider: 'tm-direct',
+			modelId: 'glm-4.7',
+			maxTokens: 204800,
 			temperature: 0.2
 		},
 		research: {
-			provider: 'perplexity',
-			modelId: 'sonar',
-			maxTokens: 8700,
-			temperature: 0.1
+			provider: 'tm-direct',
+			modelId: 'glm-4.7',
+			maxTokens: 204800,
+			temperature: 0.2
 		},
 		fallback: {
-			provider: 'anthropic',
-			modelId: 'claude-3-7-sonnet-20250219',
-			maxTokens: 120000,
+			provider: 'tm-direct',
+			modelId: 'glm-4.7',
+			maxTokens: 204800,
 			temperature: 0.2
 		}
 	},
