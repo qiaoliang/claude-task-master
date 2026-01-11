@@ -7,7 +7,7 @@ Intelligently fixes common dependency problems while preserving project logic.
 ## Execution
 
 ```bash
-task-master fix-dependencies
+ztm fix-dependencies
 ```
 
 ## What Gets Fixed

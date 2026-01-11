@@ -14,13 +14,13 @@
 		"productivity"
 	],
 	"author": {
-		"name": "Eyal Toledano",
-		"url": "https://github.com/eyaltoledano/claude-task-master"
+		"name": "Qiaoliang",
+		"url": "https://github.com/qiaoliang/claude-task-master"
 	},
 	"license": "MIT WITH Commons-Clause",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/eyaltoledano/claude-task-master.git",
+		"url": "git+https://github.com/qiaoliang/claude-task-master.git",
 		"directory": "packages/claude-code-plugin"
 	}
 }

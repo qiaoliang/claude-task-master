@@ -6,8 +6,8 @@ This command helps you get Task Master set up globally on your system.
 
 1. **Check Current Installation**
    ```bash
-   # Check if task-master command exists
-   which task-master || echo "Task Master not found"
+   # Check if ztm command exists
+   which ztm || echo "Task Master not found"
    
    # Check npm global packages
    npm list -g ztm-ai
@@ -33,23 +33,23 @@ This command helps you get Task Master set up globally on your system.
 4. **Verify Installation**
    ```bash
    # Check version
-   task-master --version
+   ztm --version
    
    # Verify command is available
-   which task-master
+   which ztm
    ```
 
 5. **Initial Setup**
    ```bash
    # Initialize in current directory
-   task-master init
+   ztm init
    ```
 
 6. **Configure AI Provider**
    Ensure you have at least one AI provider API key set:
    ```bash
    # Check current configuration
-   task-master models --status
+   ztm models --status
    
    # If no API keys found, guide setup
    echo "You'll need at least one API key:"
@@ -66,7 +66,7 @@ This command helps you get Task Master set up globally on your system.
    echo "Build a simple hello world API" > test-prd.txt
    
    # Try parsing it
-   task-master parse-prd test-prd.txt -n 3
+   ztm parse-prd test-prd.txt -n 3
    ```
 
 ## Troubleshooting
@@ -102,16 +102,16 @@ nvm use 20
 Once installed, you should see:
 ```
 ✅ Task Master v0.16.2 (or higher) installed
-✅ Command 'task-master' available globally
+✅ Command 'ztm' available globally
 ✅ AI provider configured
 ✅ Ready to use slash commands!
 
-Try: /project:task-master:init your-prd.md
+Try: /project:ztm:init your-prd.md
 ```
 
 ## Next Steps
 
 After installation:
 1. Run `/project:utils:check-health` to verify setup
-2. Configure AI providers with `/project:task-master:models`
+2. Configure AI providers with `/project:ztm:models`
 3. Start using Task Master commands!
