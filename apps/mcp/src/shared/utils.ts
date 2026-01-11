@@ -258,7 +258,7 @@ function getProjectRootFromSession(session: any): string | null {
  * Wrapper to normalize project root in args with proper precedence order
  *
  * PRECEDENCE ORDER:
- * 1. TASK_MASTER_PROJECT_ROOT environment variable (from process.env or session)
+ * 1. ZH_TASK_MASTER_PROJECT_ROOT environment variable (from process.env or session)
  * 2. args.projectRoot (explicitly provided)
  * 3. Session-based project root resolution
  * 4. Current directory fallback
@@ -275,22 +275,22 @@ export function withNormalizedProjectRoot<T extends { projectRoot?: string }>(
 		let rootSource = 'unknown';
 
 		try {
-			// 1. Check for TASK_MASTER_PROJECT_ROOT environment variable first
-			if (process.env.TASK_MASTER_PROJECT_ROOT) {
-				const envRoot = process.env.TASK_MASTER_PROJECT_ROOT;
+			// 1. Check for ZH_TASK_MASTER_PROJECT_ROOT environment variable first
+			if (process.env.ZH_TASK_MASTER_PROJECT_ROOT) {
+				const envRoot = process.env.ZH_TASK_MASTER_PROJECT_ROOT;
 				normalizedRoot = path.isAbsolute(envRoot)
 					? envRoot
 					: path.resolve(process.cwd(), envRoot);
-				rootSource = 'TASK_MASTER_PROJECT_ROOT environment variable';
+				rootSource = 'ZH_TASK_MASTER_PROJECT_ROOT environment variable';
 				log?.info?.(`Using project root from ${rootSource}: ${normalizedRoot}`);
 			}
-			// Also check session environment variables for TASK_MASTER_PROJECT_ROOT
-			else if (session?.env?.TASK_MASTER_PROJECT_ROOT) {
-				const envRoot = session.env.TASK_MASTER_PROJECT_ROOT;
+			// Also check session environment variables for ZH_TASK_MASTER_PROJECT_ROOT
+			else if (session?.env?.ZH_TASK_MASTER_PROJECT_ROOT) {
+				const envRoot = session.env.ZH_TASK_MASTER_PROJECT_ROOT;
 				normalizedRoot = path.isAbsolute(envRoot)
 					? envRoot
 					: path.resolve(process.cwd(), envRoot);
-				rootSource = 'TASK_MASTER_PROJECT_ROOT session environment variable';
+				rootSource = 'ZH_TASK_MASTER_PROJECT_ROOT session environment variable';
 				log?.info?.(`Using project root from ${rootSource}: ${normalizedRoot}`);
 			}
 			// 2. If no environment variable, try args.projectRoot
@@ -320,7 +320,7 @@ export function withNormalizedProjectRoot<T extends { projectRoot?: string }>(
 						success: false,
 						error: {
 							message:
-								'Could not determine project root. Please provide projectRoot argument or ensure TASK_MASTER_PROJECT_ROOT environment variable is set.'
+								'Could not determine project root. Please provide projectRoot argument or ensure ZH_TASK_MASTER_PROJECT_ROOT environment variable is set.'
 						}
 					}
 				});

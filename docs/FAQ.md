@@ -677,7 +677,7 @@ task-master show 1
       "command": "node",
       "args": ["/Users/qiaoliang/working/code/claude-task-master/dist/mcp-server.js"],
       "env": {
-        "TASK_MASTER_TOOLS": "all",
+        "ZH_TASK_MASTER_TOOLS": "all",
         "OLLAMA_API_KEY": "ollama-local"
       }
     }

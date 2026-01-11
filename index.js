@@ -68,7 +68,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 	const program = new Command();
 
 	program
-		.name('task-master')
+		.name('ztm')
 		.description('Claude Task Master CLI')
 		.version(version);
 

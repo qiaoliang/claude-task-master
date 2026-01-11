@@ -191,10 +191,10 @@ npm run turbo:typecheck
 
 ```bash
 # 全局安装后
-task-master <command>
+ztm <command>
 
 # 本地运行
-npx task-master <command>
+npx ztm <command>
 
 # 或使用 node
 node dist/task-master.js <command>
@@ -230,36 +230,36 @@ npm run build -w @tm/cli
 ### 项目设置
 
 ```bash
-task-master init                    # 初始化 Task Master
-task-master parse-prd <path>        # 从 PRD 生成任务
-task-master models --setup          # 交互式配置 AI 模型
+ztm init                    # 初始化 Task Master
+ztm parse-prd <path>        # 从 PRD 生成任务
+ztm models --setup          # 交互式配置 AI 模型
 ```
 
 ### 日常开发工作流
 
 ```bash
-task-master list                    # 显示所有任务
-task-master next                    # 获取下一个可用任务
-task-master show <id>               # 查看任务详情（支持多个 ID：1,3,5）
-task-master set-status --id=<id> --status=done  # 标记任务完成
+ztm list                    # 显示所有任务
+ztm next                    # 获取下一个可用任务
+ztm show <id>               # 查看任务详情（支持多个 ID：1,3,5）
+ztm set-status --id=<id> --status=done  # 标记任务完成
 ```
 
 ### 任务管理
 
 ```bash
-task-master add-task --prompt="description" --research  # 添加新任务
-task-master expand --id=<id> --research --force          # 将任务分解为子任务
-task-master update-task --id=<id> --prompt="changes"     # 更新特定任务
-task-master update --from=<id> --prompt="changes"        # 从 ID 开始更新多个任务
-task-master update-subtask --id=<id> --prompt="notes"    # 添加实现笔记到子任务
+ztm add-task --prompt="description" --research  # 添加新任务
+ztm expand --id=<id> --research --force          # 将任务分解为子任务
+ztm update-task --id=<id> --prompt="changes"     # 更新特定任务
+ztm update --from=<id> --prompt="changes"        # 从 ID 开始更新多个任务
+ztm update-subtask --id=<id> --prompt="notes"    # 添加实现笔记到子任务
 ```
 
 ### 分析和规划
 
 ```bash
-task-master analyze-complexity --research    # 分析任务复杂度
-task-master complexity-report                # 查看复杂度分析
-task-master expand --all --research          # 展开所有符合条件的任务
+ztm analyze-complexity --research    # 分析任务复杂度
+ztm complexity-report                # 查看复杂度分析
+ztm expand --all --research          # 展开所有符合条件的任务
 ```
 
 ### 依赖和组织
@@ -322,7 +322,7 @@ task-master research "查询内容"  # 研究最新信息
       "command": "npx",
       "args": ["-y", "ztm-ai"],
       "env": {
-        "TASK_MASTER_TOOLS": "core",
+        "ZH_TASK_MASTER_TOOLS": "core",
         "ANTHROPIC_API_KEY": "your_key_here",
         "PERPLEXITY_API_KEY": "your_key_here",
         "OPENAI_API_KEY": "OPENAI_API_KEY_HERE",
@@ -354,7 +354,7 @@ Task Master 使用分层工具加载来优化上下文窗口使用：
 
 **所有层级工具**：依赖管理、标签管理、研究、自动驾驶 TDD 工作流、范围调整、模型、规则
 
-**升级层级**：在 `.mcp.json` 中将 `TASK_MASTER_TOOLS` 从 `"core"` 更改为 `"standard"` 或 `"all"`，然后重启 MCP 连接。
+**升级层级**：在 `.mcp.json` 中将 `ZH_TASK_MASTER_TOOLS` 从 `"core"` 更改为 `"standard"` 或 `"all"`，然后重启 MCP 连接。
 
 ### 核心 MCP 工具映射
 

@@ -291,7 +291,7 @@ export class NotificationPreferencesManager {
 				notificationType: NotificationType.VSCODE_ERROR,
 				logToConsole: true
 			},
-			[ErrorCategory.TASK_MASTER_API]: {
+			[ErrorCategory.ZH_TASK_MASTER_API]: {
 				showToUser: true,
 				notificationType: NotificationType.TOAST_ERROR,
 				logToConsole: true

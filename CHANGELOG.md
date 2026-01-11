@@ -1082,7 +1082,7 @@
 
 - [#1181](https://github.com/eyaltoledano/claude-task-master/pull/1181) [`a69d8c9`](https://github.com/eyaltoledano/claude-task-master/commit/a69d8c91dc9205a3fdaf9d32276144fa3bcad55d) Thanks [@karol-f](https://github.com/karol-f)! - Add configurable MCP tool loading to optimize LLM context usage
 
-  You can now control which Task Master MCP tools are loaded by setting the `TASK_MASTER_TOOLS` environment variable in your MCP configuration. This helps reduce context usage for LLMs by only loading the tools you need.
+  You can now control which Task Master MCP tools are loaded by setting the `ZH_TASK_MASTER_TOOLS` environment variable in your MCP configuration. This helps reduce context usage for LLMs by only loading the tools you need.
 
   **Configuration Options:**
   - `all` (default): Load all 36 tools
@@ -1101,7 +1101,7 @@
         "command": "npx",
         "args": ["-y", "task-master-ai"],
         "env": {
-          "TASK_MASTER_TOOLS": "standard",
+          "ZH_TASK_MASTER_TOOLS": "standard",
           "ANTHROPIC_API_KEY": "your_key_here"
         }
       }
@@ -1227,7 +1227,7 @@
 
 - [#1181](https://github.com/eyaltoledano/claude-task-master/pull/1181) [`a69d8c9`](https://github.com/eyaltoledano/claude-task-master/commit/a69d8c91dc9205a3fdaf9d32276144fa3bcad55d) Thanks [@karol-f](https://github.com/karol-f)! - Add configurable MCP tool loading to optimize LLM context usage
 
-  You can now control which Task Master MCP tools are loaded by setting the `TASK_MASTER_TOOLS` environment variable in your MCP configuration. This helps reduce context usage for LLMs by only loading the tools you need.
+  You can now control which Task Master MCP tools are loaded by setting the `ZH_TASK_MASTER_TOOLS` environment variable in your MCP configuration. This helps reduce context usage for LLMs by only loading the tools you need.
 
   **Configuration Options:**
   - `all` (default): Load all 36 tools
@@ -1246,7 +1246,7 @@
         "command": "npx",
         "args": ["-y", "task-master-ai"],
         "env": {
-          "TASK_MASTER_TOOLS": "standard",
+          "ZH_TASK_MASTER_TOOLS": "standard",
           "ANTHROPIC_API_KEY": "your_key_here"
         }
       }
@@ -3324,8 +3324,8 @@
 
 - [#607](https://github.com/eyaltoledano/claude-task-master/pull/607) [`6a8a68e`](https://github.com/eyaltoledano/claude-task-master/commit/6a8a68e1a3f34dcdf40b355b4602a08d291f8e38) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Renamed baseUrl to baseURL
 
-- [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
-  - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
+- [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add ZH_TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
+  - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `ZH_TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
 
 - [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified .taskmaster directory structure
 
@@ -3379,8 +3379,8 @@
 
 - [#607](https://github.com/eyaltoledano/claude-task-master/pull/607) [`6a8a68e`](https://github.com/eyaltoledano/claude-task-master/commit/6a8a68e1a3f34dcdf40b355b4602a08d291f8e38) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Renamed baseUrl to baseURL
 
-- [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
-  - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
+- [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add ZH_TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
+  - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `ZH_TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
 
 - [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified .taskmaster directory structure
 

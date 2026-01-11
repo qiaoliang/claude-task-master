@@ -457,7 +457,7 @@ When using Task Master in VS Code with MCP support:
       "env": {
         "NODE_ENV": "development",
         "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}",
-        "TASK_MASTER_PROJECT_ROOT": "/path/to/your/project"
+        "ZH_TASK_MASTER_PROJECT_ROOT": "/path/to/your/project"
       }
     }
   }

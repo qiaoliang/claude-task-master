@@ -21,7 +21,7 @@ export enum ErrorCategory {
 	VALIDATION = 'validation',
 	NETWORK = 'network',
 	INTERNAL = 'internal',
-	TASK_MASTER_API = 'TASK_MASTER_API',
+	ZH_TASK_MASTER_API = 'ZH_TASK_MASTER_API',
 	DATA_VALIDATION = 'DATA_VALIDATION',
 	DATA_PARSING = 'DATA_PARSING',
 	TASK_DATA_CORRUPTION = 'TASK_DATA_CORRUPTION',
@@ -732,8 +732,8 @@ export const ERROR_CATEGORIZATION_RULES: Record<string, ErrorCategory> = {
 
 	// MCP patterns
 	MCP: ErrorCategory.MCP_CONNECTION,
-	'Task Master': ErrorCategory.TASK_MASTER_API,
-	polling: ErrorCategory.TASK_MASTER_API,
+	'Task Master': ErrorCategory.ZH_TASK_MASTER_API,
+	polling: ErrorCategory.ZH_TASK_MASTER_API,
 
 	// VS Code patterns
 	vscode: ErrorCategory.VSCODE_API,
@@ -761,7 +761,7 @@ export const ERROR_CATEGORIZATION_RULES: Record<string, ErrorCategory> = {
 export const CATEGORY_SEVERITY_MAPPING: Record<ErrorCategory, ErrorSeverity> = {
 	[ErrorCategory.NETWORK]: ErrorSeverity.MEDIUM,
 	[ErrorCategory.MCP_CONNECTION]: ErrorSeverity.HIGH,
-	[ErrorCategory.TASK_MASTER_API]: ErrorSeverity.HIGH,
+	[ErrorCategory.ZH_TASK_MASTER_API]: ErrorSeverity.HIGH,
 	[ErrorCategory.DATA_VALIDATION]: ErrorSeverity.MEDIUM,
 	[ErrorCategory.DATA_PARSING]: ErrorSeverity.HIGH,
 	[ErrorCategory.TASK_DATA_CORRUPTION]: ErrorSeverity.CRITICAL,

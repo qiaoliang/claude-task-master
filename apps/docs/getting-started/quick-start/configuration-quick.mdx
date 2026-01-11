@@ -38,7 +38,7 @@ For MCP/Cursor usage: Configure keys in the env section of your .cursor/mcp.json
 ```
 
 <Tip>
-**Optimize Context Usage**: You can control which Task Master MCP tools are loaded using the `TASK_MASTER_TOOLS` environment variable. This helps reduce LLM context usage by only loading the tools you need.
+**Optimize Context Usage**: You can control which Task Master MCP tools are loaded using the `ZH_TASK_MASTER_TOOLS` environment variable. This helps reduce LLM context usage by only loading the tools you need.
 
 Options:
 - `core` or `lean` (default) - 7 essential tools
@@ -48,7 +48,7 @@ Options:
 Example:
 ```json
 "env": {
-  "TASK_MASTER_TOOLS": "standard",
+  "ZH_TASK_MASTER_TOOLS": "standard",
   "ANTHROPIC_API_KEY": "your_key_here"
 }
 ```

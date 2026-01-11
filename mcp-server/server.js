@@ -8,7 +8,7 @@ import logger from './src/logger.js';
 dotenv.config();
 
 // Set MCP mode to silence tm-core console output
-process.env.TASK_MASTER_MCP = 'true';
+process.env.ZH_TASK_MASTER_MCP = 'true';
 
 /**
  * Start the MCP server

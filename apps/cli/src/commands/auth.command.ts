@@ -302,7 +302,7 @@ Examples:
 		} else {
 			console.log(chalk.yellow('✗ Not authenticated'));
 			console.log(
-				chalk.gray('\n  Run "task-master auth login" to authenticate')
+				chalk.gray('\n  Run "ztm auth login" to authenticate')
 			);
 
 			return {

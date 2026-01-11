@@ -436,8 +436,8 @@ describe('Cross-Tag Move CLI Integration', () => {
 			mockMoveTasksBetweenTags.mockResolvedValue({
 				message: 'ok',
 				tips: [
-					'Run "task-master validate-dependencies" to check for dependency issues.',
-					'Run "task-master fix-dependencies" to automatically repair dangling dependencies.'
+					'Run "ztm validate-dependencies" to check for dependency issues.',
+					'Run "ztm fix-dependencies" to automatically repair dangling dependencies.'
 				]
 			});
 

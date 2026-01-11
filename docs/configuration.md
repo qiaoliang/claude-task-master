@@ -61,12 +61,12 @@ Taskmaster uses two primary methods for configuration:
 
 ## MCP Tool Loading Configuration
 
-### TASK_MASTER_TOOLS Environment Variable
+### ZH_TASK_MASTER_TOOLS Environment Variable
 
-The `TASK_MASTER_TOOLS` environment variable controls which tools are loaded by the Task Master MCP server. This allows you to optimize token usage based on your workflow needs.
+The `ZH_TASK_MASTER_TOOLS` environment variable controls which tools are loaded by the Task Master MCP server. This allows you to optimize token usage based on your workflow needs.
 
 > Note
-> Prefer setting `TASK_MASTER_TOOLS` in your MCP client's `env` block (e.g., `.cursor/mcp.json`) or in CI/deployment env. The `.env` file is reserved for API keys/endpoints; avoid persisting non-secret settings there.
+> Prefer setting `ZH_TASK_MASTER_TOOLS` in your MCP client's `env` block (e.g., `.cursor/mcp.json`) or in CI/deployment env. The `.env` file is reserved for API keys/endpoints; avoid persisting non-secret settings there.
 
 #### Configuration Options
 
@@ -99,7 +99,7 @@ The `TASK_MASTER_TOOLS` environment variable controls which tools are loaded by 
      "mcpServers": {
        "ztm-ai": {
          "env": {
-           "TASK_MASTER_TOOLS": "standard",  // Set tool loading mode
+           "ZH_TASK_MASTER_TOOLS": "standard",  // Set tool loading mode
            // API keys can still use .env for security
          }
        }
@@ -111,19 +111,19 @@ The `TASK_MASTER_TOOLS` environment variable controls which tools are loaded by 
 
    ```bash
    claude mcp add ztm-ai --scope user \
-     --env TASK_MASTER_TOOLS="core" \
+     --env ZH_TASK_MASTER_TOOLS="core" \
      -- npx -y ztm-ai@latest
    ```
 
 3. **In CI/deployment environment variables**:
    ```bash
-   export TASK_MASTER_TOOLS="standard"
+   export ZH_TASK_MASTER_TOOLS="standard"
    node mcp-server/server.js
    ```
 
 #### Tool Loading Behavior
 
-- When `TASK_MASTER_TOOLS` is unset or empty, the system defaults to `"core"`
+- When `ZH_TASK_MASTER_TOOLS` is unset or empty, the system defaults to `"core"`
 - Invalid tool names in a user-specified list are ignored (a warning is emitted for each)
 - If every tool name in a custom list is invalid, the system falls back to `"all"`
 - Tool names are case-insensitive (e.g., `"CORE"`, `"core"`, and `"Core"` are treated identically)

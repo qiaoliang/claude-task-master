@@ -188,13 +188,13 @@ jq -c 'to_entries[] | .key as $provider | .value[] | select(.allowed_roles[]? ==
     if [ "$provider" == "openrouter" ]; then flag="--openrouter"; fi
     if [ "$provider" == "ollama" ]; then flag="--ollama"; fi
 
-    if ! command -v task-master &> /dev/null; then
-        log_error "task-master command not found."
+    if ! command -v ztm &> /dev/null; then
+        log_error "ztm command not found."
         echo "[INSTRUCTION FV] Please run 'npm link ztm-ai' in the project root first."
         exit 1
     fi
     log_info "Setting main model to $model_id ${flag:+using flag $flag}..."
-    set_model_cmd="task-master models --set-main \"$model_id\" $flag"
+    set_model_cmd="ztm models --set-main \"$model_id\" $flag"
     if ! eval "$set_model_cmd" > /dev/null 2>&1; then
         log_error "Failed to set main model for $provider / $model_id. Skipping test."
         echo "$provider,$model_id,SET_MODEL_FAILED" >> "$PROGRESS_LOG_FILE"
@@ -207,7 +207,7 @@ jq -c 'to_entries[] | .key as $provider | .value[] | select(.allowed_roles[]? ==
     
     # Capture output to a variable AND a file
     update_subtask_command_output=""
-    timeout 120s task-master update-subtask --id=1.1 --prompt="Simple test prompt to verify generateObjectService call." 2>&1 | tee "$update_subtask_output_file" &
+    timeout 120s ztm update-subtask --id=1.1 --prompt="Simple test prompt to verify generateObjectService call." 2>&1 | tee "$update_subtask_output_file" &
     # Store the command output in a variable simultaneously
     # update_subtask_command_output=$(timeout 120s task-master update-subtask --id=1.1 --prompt="Simple test prompt to verify generateObjectService call." 2>&1)
     # The above direct capture won't work well with tee and backgrounding. Instead, read the file after command completion.
@@ -251,7 +251,7 @@ echo "--- Fallback Model Verification Report (via $0) ---"
 echo "Executed inside run directory: $(pwd)"
 echo "Progress log: $(pwd)/$PROGRESS_LOG_FILE"
 echo ""
-echo "Test Command: task-master update-subtask --id=1.1 --prompt=\"...\" (tests generateObjectService)"
+echo "Test Command: ztm update-subtask --id=1.1 --prompt=\"...\" (tests generateObjectService)"
 echo "Models were tested by setting them as the 'main' model temporarily."
 echo "Results based on exit code and output verification:"
 echo ""

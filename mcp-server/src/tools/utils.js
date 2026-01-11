@@ -106,20 +106,20 @@ function getTagInfo(projectRoot, log) {
  */
 function getProjectRoot(projectRootRaw, log) {
 	// PRECEDENCE ORDER:
-	// 1. Environment variable override (TASK_MASTER_PROJECT_ROOT)
+	// 1. Environment variable override (ZH_TASK_MASTER_PROJECT_ROOT)
 	// 2. Explicitly provided projectRoot in args
 	// 3. Previously found/cached project root
 	// 4. Current directory if it has project markers
 	// 5. Current directory with warning
 
 	// 1. Check for environment variable override
-	if (process.env.TASK_MASTER_PROJECT_ROOT) {
-		const envRoot = process.env.TASK_MASTER_PROJECT_ROOT;
+	if (process.env.ZH_TASK_MASTER_PROJECT_ROOT) {
+		const envRoot = process.env.ZH_TASK_MASTER_PROJECT_ROOT;
 		const absolutePath = path.isAbsolute(envRoot)
 			? envRoot
 			: path.resolve(process.cwd(), envRoot);
 		log.info(
-			`Using project root from TASK_MASTER_PROJECT_ROOT environment variable: ${absolutePath}`
+			`Using project root from ZH_TASK_MASTER_PROJECT_ROOT environment variable: ${absolutePath}`
 		);
 		return absolutePath;
 	}
@@ -142,7 +142,7 @@ function getProjectRoot(projectRootRaw, log) {
 		return lastFoundProjectRoot;
 	}
 
-	// 4. Check if the current directory has any indicators of being a task-master project
+	// 4. Check if the current directory has any indicators of being a ztm project
 	const currentDir = process.cwd();
 	if (
 		PROJECT_MARKERS.some((marker) => {
@@ -158,10 +158,10 @@ function getProjectRoot(projectRootRaw, log) {
 
 	// 5. Default to current working directory but warn the user
 	log.warn(
-		`No task-master project detected in current directory. Using ${currentDir} as project root.`
+		`No ztm project detected in current directory. Using ${currentDir} as project root.`
 	);
 	log.warn(
-		'Consider using --project-root to specify the correct project location or set TASK_MASTER_PROJECT_ROOT environment variable.'
+		'Consider using --project-root to specify the correct project location or set ZH_TASK_MASTER_PROJECT_ROOT environment variable.'
 	);
 	return currentDir;
 }
@@ -325,7 +325,7 @@ async function handleApiResult(
 }
 
 /**
- * Executes a task-master CLI command synchronously.
+ * Executes a ztm CLI command synchronously.
  * @param {string} command - The command to execute (e.g., 'add-task')
  * @param {Object} log - Logger instance
  * @param {Array} args - Arguments for the command
@@ -345,7 +345,7 @@ function executeTaskMasterCommand(
 		const cwd = getProjectRoot(projectRootRaw, log);
 
 		log.info(
-			`Executing task-master ${command} with args: ${JSON.stringify(
+			`Executing ztm ${command} with args: ${JSON.stringify(
 				args
 			)} in directory: ${cwd}`
 		);
@@ -364,13 +364,13 @@ function executeTaskMasterCommand(
 		// Log the environment being passed (optional, for debugging)
 		// log.info(`Spawn options env: ${JSON.stringify(spawnOptions.env)}`);
 
-		// Execute the command using the global task-master CLI or local script
+		// Execute the command using the global ztm CLI or local script
 		// Try the global CLI first
-		let result = spawnSync('task-master', fullArgs, spawnOptions);
+		let result = spawnSync('ztm', fullArgs, spawnOptions);
 
 		// If global CLI is not available, try fallback to the local script
 		if (result.error && result.error.code === 'ENOENT') {
-			log.info('Global task-master not found, falling back to local script');
+			log.info('Global ztm not found, falling back to local script');
 			// Pass the same spawnOptions (including env) to the fallback
 			result = spawnSync('node', ['scripts/dev.js', ...fullArgs], spawnOptions);
 		}
@@ -397,7 +397,7 @@ function executeTaskMasterCommand(
 			stderr: result.stderr
 		};
 	} catch (error) {
-		log.error(`Error executing task-master command: ${error.message}`);
+		log.error(`Error executing ztm command: ${error.message}`);
 		return {
 			success: false,
 			error: error.message
@@ -679,7 +679,7 @@ function getRawProjectRootFromSession(session, log) {
 /**
  * Higher-order function to wrap MCP tool execute methods.
  * Ensures args.projectRoot is present and normalized before execution.
- * Uses TASK_MASTER_PROJECT_ROOT environment variable with proper precedence.
+ * Uses ZH_TASK_MASTER_PROJECT_ROOT environment variable with proper precedence.
  * @param {Function} executeFn - The original async execute(args, context) function.
  * @returns {Function} The wrapped async execute function.
  */
@@ -691,27 +691,27 @@ function withNormalizedProjectRoot(executeFn) {
 
 		try {
 			// PRECEDENCE ORDER:
-			// 1. TASK_MASTER_PROJECT_ROOT environment variable (from process.env or session)
+			// 1. ZH_TASK_MASTER_PROJECT_ROOT environment variable (from process.env or session)
 			// 2. args.projectRoot (explicitly provided)
 			// 3. Session-based project root resolution
 			// 4. Current directory fallback
 
-			// 1. Check for TASK_MASTER_PROJECT_ROOT environment variable first
-			if (process.env.TASK_MASTER_PROJECT_ROOT) {
-				const envRoot = process.env.TASK_MASTER_PROJECT_ROOT;
+			// 1. Check for ZH_TASK_MASTER_PROJECT_ROOT environment variable first
+			if (process.env.ZH_TASK_MASTER_PROJECT_ROOT) {
+				const envRoot = process.env.ZH_TASK_MASTER_PROJECT_ROOT;
 				normalizedRoot = path.isAbsolute(envRoot)
 					? envRoot
 					: path.resolve(process.cwd(), envRoot);
-				rootSource = 'TASK_MASTER_PROJECT_ROOT environment variable';
+				rootSource = 'ZH_TASK_MASTER_PROJECT_ROOT environment variable';
 				log.info(`Using project root from ${rootSource}: ${normalizedRoot}`);
 			}
-			// Also check session environment variables for TASK_MASTER_PROJECT_ROOT
-			else if (session?.env?.TASK_MASTER_PROJECT_ROOT) {
-				const envRoot = session.env.TASK_MASTER_PROJECT_ROOT;
+			// Also check session environment variables for ZH_TASK_MASTER_PROJECT_ROOT
+			else if (session?.env?.ZH_TASK_MASTER_PROJECT_ROOT) {
+				const envRoot = session.env.ZH_TASK_MASTER_PROJECT_ROOT;
 				normalizedRoot = path.isAbsolute(envRoot)
 					? envRoot
 					: path.resolve(process.cwd(), envRoot);
-				rootSource = 'TASK_MASTER_PROJECT_ROOT session environment variable';
+				rootSource = 'ZH_TASK_MASTER_PROJECT_ROOT session environment variable';
 				log.info(`Using project root from ${rootSource}: ${normalizedRoot}`);
 			}
 			// 2. If no environment variable, try args.projectRoot
@@ -735,7 +735,7 @@ function withNormalizedProjectRoot(executeFn) {
 					'Could not determine project root from environment, args, or session.'
 				);
 				return createErrorResponse(
-					'Could not determine project root. Please provide projectRoot argument or ensure TASK_MASTER_PROJECT_ROOT environment variable is set.'
+					'Could not determine project root. Please provide projectRoot argument or ensure ZH_TASK_MASTER_PROJECT_ROOT environment variable is set.'
 				);
 			}
 

@@ -5,7 +5,7 @@
 			"command": "npx",
 			"args": ["-y", "ztm-ai"],
 			"env": {
-				"TASK_MASTER_TOOLS": "all"
+				"ZH_TASK_MASTER_TOOLS": "all"
 			}
 		}
 	}

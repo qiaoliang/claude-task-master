@@ -75,7 +75,7 @@ describe('generate MCP tool', () => {
 			{
 				encoding: 'utf-8',
 				stdio: 'pipe',
-				env: { ...process.env, TASK_MASTER_TOOLS: 'all' }
+				env: { ...process.env, ZH_TASK_MASTER_TOOLS: 'all' }
 			}
 		);
 

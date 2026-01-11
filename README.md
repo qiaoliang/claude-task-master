@@ -119,7 +119,7 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
       "command": "npx",
       "args": ["-y", "ztm-ai"],
       "env": {
-        // "TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
+        // "ZH_TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
         "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
         "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
         "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
@@ -149,7 +149,7 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
       "command": "npx",
       "args": ["-y", "ztm-ai"],
       "env": {
-        // "TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
+        // "ZH_TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
         "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
         "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
         "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
@@ -287,7 +287,7 @@ ztm rules add windsurf,roo,vscode
 
 Task Master's MCP server supports selective tool loading to reduce context window usage. By default, all 36 tools are loaded (~21,000 tokens) to maintain backward compatibility with existing installations.
 
-You can optimize performance by configuring the `TASK_MASTER_TOOLS` environment variable:
+You can optimize performance by configuring the `ZH_TASK_MASTER_TOOLS` environment variable:
 
 ### Available Modes
 
@@ -302,7 +302,7 @@ You can optimize performance by configuring the `TASK_MASTER_TOOLS` environment 
 
 #### Method 1: Environment Variable in MCP Configuration
 
-Add `TASK_MASTER_TOOLS` to your MCP configuration file's `env` section:
+Add `ZH_TASK_MASTER_TOOLS` to your MCP configuration file's `env` section:
 
 ```jsonc
 {
@@ -311,7 +311,7 @@ Add `TASK_MASTER_TOOLS` to your MCP configuration file's `env` section:
       "command": "npx",
       "args": ["-y", "ztm-ai"],
       "env": {
-        "TASK_MASTER_TOOLS": "standard",  // Options: "all", "standard", "core", "lean", or comma-separated list
+        "ZH_TASK_MASTER_TOOLS": "standard",  // Options: "all", "standard", "core", "lean", or comma-separated list
         "ANTHROPIC_API_KEY": "your-key-here",
         // ... other API keys
       }
@@ -327,12 +327,12 @@ For Claude Code users, you can set the mode during installation:
 ```bash
 # Core mode example (~70% token reduction)
 claude mcp add ztm-ai --scope user \
-  --env TASK_MASTER_TOOLS="core" \
+  --env ZH_TASK_MASTER_TOOLS="core" \
   -- npx -y ztm-ai@latest
 
 # Custom tools example
 claude mcp add ztm-ai --scope user \
-  --env TASK_MASTER_TOOLS="get_tasks,next_task,set_task_status" \
+  --env ZH_TASK_MASTER_TOOLS="get_tasks,next_task,set_task_status" \
   -- npx -y ztm-ai@latest
 ```
 
