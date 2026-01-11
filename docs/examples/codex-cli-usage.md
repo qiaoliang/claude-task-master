@@ -299,7 +299,7 @@ jobs:
           node-version: '20'
 
       - name: Install Task Master
-        run: npm install -g task-master-ai
+        run: npm install -g ztm-ai
 
       - name: Configure Codex CLI
         run: |

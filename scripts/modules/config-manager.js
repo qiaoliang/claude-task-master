@@ -956,7 +956,7 @@ function getMcpApiKeyStatus(providerName, projectRoot = null) {
 		const mcpConfig = JSON.parse(mcpConfigRaw);
 
 		const mcpEnv =
-			mcpConfig?.mcpServers?.['task-master-ai']?.env ||
+			mcpConfig?.mcpServers?.['ztm-ai']?.env ||
 			mcpConfig?.mcpServers?.['taskmaster-ai']?.env;
 		if (!mcpEnv) {
 			return false;

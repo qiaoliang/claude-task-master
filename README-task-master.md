@@ -34,10 +34,10 @@ See the [Configuration Guide](docs/configuration.md) for full details.
 
 ```bash
 # Install globally
-npm install -g task-master-ai
+npm install -g ztm-ai
 
 # OR install locally within your project
-npm install task-master-ai
+npm install ztm-ai
 ```
 
 ### Initialize a new project
@@ -143,7 +143,7 @@ To enable enhanced task management capabilities directly within Cursor using the
 4. Configure with the following details:
    - Name: "Task Master"
    - Type: "Command"
-   - Command: "npx -y task-master-ai"
+   - Command: "npx -y ztm-ai"
 5. Save the settings
 
 Once configured, you can interact with Task Master's task management commands directly through Cursor's interface, providing a more integrated experience.

@@ -47,7 +47,7 @@ describe('VS Code Integration', () => {
 			if (filePath.toString().includes('mcp.json')) {
 				return JSON.stringify({
 					mcpServers: {
-						'task-master-ai': {
+						'ztm-ai': {
 							command: 'node',
 							args: ['mcp-server/src/index.js']
 						}
@@ -88,7 +88,7 @@ describe('VS Code Integration', () => {
 		// Create MCP configuration file
 		const mcpConfig = {
 			mcpServers: {
-				'task-master-ai': {
+				'ztm-ai': {
 					command: 'node',
 					args: ['mcp-server/src/index.js'],
 					env: {
@@ -177,7 +177,7 @@ Task Master specific VS Code instruction.`;
 		const expectedMcpPath = path.join(tempDir, '.vscode', 'mcp.json');
 		expect(fs.writeFileSync).toHaveBeenCalledWith(
 			expectedMcpPath,
-			expect.stringContaining('task-master-ai')
+			expect.stringContaining('ztm-ai')
 		);
 	});
 
@@ -256,13 +256,13 @@ Task Master specific VS Code instruction.`;
 
 		// Assert MCP structure
 		expect(mcpConfig).toHaveProperty('mcpServers');
-		expect(mcpConfig.mcpServers).toHaveProperty('task-master-ai');
-		expect(mcpConfig.mcpServers['task-master-ai']).toHaveProperty(
+		expect(mcpConfig.mcpServers).toHaveProperty('ztm-ai');
+		expect(mcpConfig.mcpServers['ztm-ai']).toHaveProperty(
 			'command',
 			'node'
 		);
-		expect(mcpConfig.mcpServers['task-master-ai']).toHaveProperty('args');
-		expect(mcpConfig.mcpServers['task-master-ai'].args).toContain(
+		expect(mcpConfig.mcpServers['ztm-ai']).toHaveProperty('args');
+		expect(mcpConfig.mcpServers['ztm-ai'].args).toContain(
 			'mcp-server/src/index.js'
 		);
 	});

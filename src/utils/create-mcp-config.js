@@ -46,10 +46,9 @@ export function setupMCPConfiguration(projectRoot, mcpConfigPath) {
 	// Options: "core" (7 essential tools), "standard" (14 common tools), "all" (44+ tools)
 	// See agent rules for tool tier details and how to upgrade if needed
 	const newMCPServer = {
-		'task-master-ai': {
-			command: 'npx',
-			args: ['-y', 'task-master-ai'],
-			env: {
+		'ztm-ai': {
+		    command: 'npx',
+		    args: ['-y', 'ztm-ai'],			env: {
 				TASK_MASTER_TOOLS: 'core',
 				ANTHROPIC_API_KEY: 'YOUR_ANTHROPIC_API_KEY_HERE',
 				PERPLEXITY_API_KEY: 'YOUR_PERPLEXITY_API_KEY_HERE',
@@ -72,7 +71,7 @@ export function setupMCPConfiguration(projectRoot, mcpConfigPath) {
 	if (fs.existsSync(mcpPath)) {
 		log(
 			'info',
-			'MCP configuration file already exists, checking for existing task-master-ai...'
+			'MCP configuration file already exists, checking for existing ztm-ai...'
 		);
 		try {
 			// Read existing config
@@ -81,31 +80,31 @@ export function setupMCPConfiguration(projectRoot, mcpConfigPath) {
 			if (!mcpConfig.mcpServers) {
 				mcpConfig.mcpServers = {};
 			}
-			// Check if any existing server configuration already has task-master-ai in its args
+			// Check if any existing server configuration already has ztm-ai in its args
 			const hasMCPString = Object.values(mcpConfig.mcpServers).some(
 				(server) =>
 					server.args &&
 					Array.isArray(server.args) &&
 					server.args.some(
-						(arg) => typeof arg === 'string' && arg.includes('task-master-ai')
+						(arg) => typeof arg === 'string' && arg.includes('ztm-ai')
 					)
 			);
 			if (hasMCPString) {
 				log(
 					'info',
-					'Found existing task-master-ai MCP configuration in mcp.json, leaving untouched'
+					'Found existing ztm-ai MCP configuration in mcp.json, leaving untouched'
 				);
 				return; // Exit early, don't modify the existing configuration
 			}
-			// Add the task-master-ai server if it doesn't exist
-			if (!mcpConfig.mcpServers['task-master-ai']) {
-				mcpConfig.mcpServers['task-master-ai'] = newMCPServer['task-master-ai'];
+			// Add the ztm-ai server if it doesn't exist
+			if (!mcpConfig.mcpServers['ztm-ai']) {
+				mcpConfig.mcpServers['ztm-ai'] = newMCPServer['ztm-ai'];
 				log(
 					'info',
-					'Added task-master-ai server to existing MCP configuration'
+					'Added ztm-ai server to existing MCP configuration'
 				);
 			} else {
-				log('info', 'task-master-ai server already configured in mcp.json');
+				log('info', 'ztm-ai server already configured in mcp.json');
 			}
 			// Write the updated configuration
 			fs.writeFileSync(mcpPath, formatJSONWithTabs(mcpConfig) + '\n');
@@ -138,7 +137,7 @@ export function setupMCPConfiguration(projectRoot, mcpConfigPath) {
 	}
 
 	// Add note to console about MCP integration
-	log('info', 'MCP server will use the installed task-master-ai package');
+	log('info', 'MCP server will use the installed ztm-ai package');
 }
 
 /**
@@ -188,45 +187,45 @@ export function removeTaskMasterMCPConfiguration(projectRoot, mcpConfigPath) {
 			return result;
 		}
 
-		// Check if Task Master is configured
-		const hasTaskMaster =
-			mcpConfig.mcpServers['task-master-ai'] ||
+		// Check if ztm-ai is configured
+		const hasZtmAi =
+			mcpConfig.mcpServers['ztm-ai'] ||
 			Object.values(mcpConfig.mcpServers).some(
 				(server) =>
 					server.args &&
 					Array.isArray(server.args) &&
 					server.args.some(
-						(arg) => typeof arg === 'string' && arg.includes('task-master-ai')
+						(arg) => typeof arg === 'string' && arg.includes('ztm-ai')
 					)
 			);
 
-		if (!hasTaskMaster) {
+		if (!hasZtmAi) {
 			result.success = true;
 			result.removed = false;
 			log(
 				'debug',
-				`[MCP Config] Task Master not found in MCP config: ${mcpPath}`
+				`[MCP Config] ztm-ai not found in MCP config: ${mcpPath}`
 			);
 			return result;
 		}
 
-		// Remove task-master-ai server
-		delete mcpConfig.mcpServers['task-master-ai'];
+		// Remove ztm-ai server
+		delete mcpConfig.mcpServers['ztm-ai'];
 
-		// Also remove any servers that have task-master-ai in their args
+		// Also remove any servers that have ztm-ai in their args
 		Object.keys(mcpConfig.mcpServers).forEach((serverName) => {
 			const server = mcpConfig.mcpServers[serverName];
 			if (
 				server.args &&
 				Array.isArray(server.args) &&
 				server.args.some(
-					(arg) => typeof arg === 'string' && arg.includes('task-master-ai')
+					(arg) => typeof arg === 'string' && arg.includes('ztm-ai')
 				)
 			) {
 				delete mcpConfig.mcpServers[serverName];
 				log(
 					'debug',
-					`[MCP Config] Removed server '${serverName}' containing task-master-ai`
+					`[MCP Config] Removed server '${serverName}' containing ztm-ai`
 				);
 			}
 		});

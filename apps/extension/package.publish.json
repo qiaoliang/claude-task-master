@@ -88,14 +88,14 @@
 				"taskmaster.mcp.command": {
 					"type": "string",
 					"default": "npx",
-					"description": "The command or absolute path to execute for the MCP server (e.g., 'npx' or '/usr/local/bin/task-master-ai')."
+					"description": "The command or absolute path to execute for the MCP server (e.g., 'npx' or '/usr/local/bin/ztm-ai')."
 				},
 				"taskmaster.mcp.args": {
 					"type": "array",
 					"items": {
 						"type": "string"
 					},
-					"default": ["-y", "task-master-ai"],
+					"default": ["-y", "ztm-ai"],
 					"description": "An array of arguments to pass to the MCP server command."
 				},
 				"taskmaster.mcp.cwd": {

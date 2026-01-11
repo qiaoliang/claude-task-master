@@ -60,9 +60,9 @@ describe('Gemini Profile Integration', () => {
 		const settingsContent = JSON.stringify(
 			{
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['-y', 'task-master-ai'],
+						args: ['-y', 'ztm-ai'],
 						env: {
 							YOUR_ANTHROPIC_API_KEY: 'your-api-key-here',
 							YOUR_PERPLEXITY_API_KEY: 'your-api-key-here',

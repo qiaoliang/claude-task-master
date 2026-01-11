@@ -65,10 +65,10 @@ Expected output: `v0.44.0` or higher
 
 ```bash
 # Install globally
-npm install -g task-master-ai
+npm install -g ztm-ai
 
 # Or install in your project
-npm install --save-dev task-master-ai
+npm install --save-dev ztm-ai
 ```
 
 ## Authentication

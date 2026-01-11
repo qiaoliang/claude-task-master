@@ -19,7 +19,7 @@ Execute this streamlined installation:
 
 \`\`\`bash
 # Check and install in one command
-task-master --version 2>/dev/null || npm install -g task-master-ai
+task-master --version 2>/dev/null || npm install -g ztm-ai
 
 # Verify installation
 task-master --version

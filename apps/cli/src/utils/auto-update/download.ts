@@ -28,11 +28,11 @@ export async function fetchTarballInfo(
 	return new Promise((resolve) => {
 		const options = {
 			hostname: 'registry.npmjs.org',
-			path: `/task-master-ai/${version}`,
+			path: `/ztm-ai/${version}`,
 			method: 'GET',
 			headers: {
 				Accept: 'application/json',
-				'User-Agent': `task-master-ai/${version}`
+				'User-Agent': `ztm-ai/${version}`
 			}
 		};
 
@@ -104,7 +104,7 @@ export async function downloadTarballWithProgress(
 			path: url.pathname,
 			method: 'GET',
 			headers: {
-				'User-Agent': `task-master-ai/${version}`
+				'User-Agent': `ztm-ai/${version}`
 			}
 		};
 
@@ -157,7 +157,7 @@ export async function downloadTarballWithProgress(
 				});
 			} else {
 				// If no content-length, show indeterminate progress
-				console.log(chalk.blue(`Downloading task-master-ai@${version}...`));
+				console.log(chalk.blue(`Downloading ztm-ai@${version}...`));
 			}
 
 			const fileStream = fs.createWriteStream(destPath);

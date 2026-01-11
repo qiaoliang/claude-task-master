@@ -54,7 +54,7 @@ Taskmaster AI is an intelligent task management system designed for AI-assisted 
 If you don't have a Taskmaster project yet:
 ```bash
 cd your-project
-npm i -g task-master-ai
+npm i -g ztm-ai
    task-master init
    ```
 
@@ -108,8 +108,8 @@ The extension integrates seamlessly with Taskmaster AI via MCP to provide:
 Access settings via **File → Preferences → Settings** and search for "Taskmaster":
 
 ### **MCP Connection Settings**
-- **MCP Server Command** - Path to task-master-ai executable (default: `npx`)
-- **MCP Server Args** - Arguments for the server command (default: `-y`, `task-master-ai`)
+- **MCP Server Command** - Path to ztm-ai executable (default: `npx`)
+- **MCP Server Args** - Arguments for the server command (default: `-y`, `ztm-ai`)
 - **Connection Timeout** - Server response timeout (default: 30s)
 - **Auto Refresh** - Enable automatic task updates (default: enabled)
 

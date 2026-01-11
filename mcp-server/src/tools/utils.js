@@ -35,7 +35,7 @@ function getVersionInfo() {
 	// Use the imported packageJson directly
 	cachedVersionInfo = {
 		version: packageJson.version || 'unknown',
-		name: packageJson.name || 'task-master-ai'
+		name: packageJson.name || 'ztm-ai'
 	};
 	return cachedVersionInfo;
 }

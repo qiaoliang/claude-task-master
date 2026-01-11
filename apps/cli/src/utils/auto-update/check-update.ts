@@ -95,11 +95,11 @@ function fetchLatestVersion(currentVersion: string): Promise<string | null> {
 		const req = https.request(
 			{
 				hostname: 'registry.npmjs.org',
-				path: '/task-master-ai',
+				path: '/ztm-ai',
 				method: 'GET',
 				headers: {
 					Accept: 'application/vnd.npm.install-v1+json',
-					'User-Agent': `task-master-ai/${currentVersion}`
+					'User-Agent': `ztm-ai/${currentVersion}`
 				}
 			},
 			(res) => {

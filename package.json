@@ -1,13 +1,13 @@
 {
-	"name": "task-master-ai",
+	"name": "ztm-ai",
 	"version": "Zh0.40.1",
 	"description": "A task management system for ambitious AI-driven development that doesn't overwhelm and confuse Cursor.",
 	"main": "index.js",
 	"type": "module",
 	"bin": {
-		"task-master": "dist/task-master.js",
-		"task-master-mcp": "dist/mcp-server.js",
-		"task-master-ai": "dist/mcp-server.js"
+		"ztm": "dist/task-master.js",
+		"ztm-mcp": "dist/mcp-server.js",
+		"ztm-ai": "dist/mcp-server.js"
 	},
 	"publishConfig": {
 		"provenance": true,

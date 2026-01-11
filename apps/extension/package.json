@@ -1,8 +1,8 @@
 {
 	"name": "extension",
 	"private": true,
-	"displayName": "TaskMaster",
-	"description": "A visual Kanban board interface for TaskMaster projects in VS Code",
+	"displayName": "ZTM",
+	"description": "A visual Kanban board interface for ZTM projects in VS Code",
 	"version": "0.26.0",
 	"publisher": "Hamster",
 	"icon": "assets/icon.png",
@@ -275,7 +275,7 @@
 		"tailwindcss": "4.1.11",
 		"typescript": "^5.9.2",
 		"@tm/core": "*",
-		"task-master-ai": "*"
+		"ztm-ai": "*"
 	},
 	"overrides": {
 		"glob@<8": "^10.4.5",

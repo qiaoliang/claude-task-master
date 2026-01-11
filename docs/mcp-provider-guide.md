@@ -452,7 +452,7 @@ When using Task Master in VS Code with MCP support:
   "servers": {
     "task-master-dev": {
       "command": "npx",
-      "args": ["-y", "task-master-ai"],
+      "args": ["-y", "ztm-ai"],
       "cwd": "/path/to/your/task-master-project",
       "env": {
         "NODE_ENV": "development",

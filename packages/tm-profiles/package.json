@@ -1,7 +1,7 @@
 {
 	"name": "@tm/profiles",
 	"private": true,
-	"description": "Editor profile management for Task Master - handles commands and rules across different editors",
+	"description": "Editor profile management for ZTM - handles commands and rules across different editors",
 	"type": "module",
 	"types": "./src/index.ts",
 	"main": "./dist/index.js",
@@ -27,7 +27,7 @@
 		"vitest": "^4.0.10"
 	},
 	"files": ["src", "README.md", "CHANGELOG.md"],
-	"keywords": ["task-master", "profiles", "editor", "commands", "typescript"],
-	"author": "Task Master AI",
+	"keywords": ["ztm", "profiles", "editor", "commands", "typescript"],
+	"author": "ZTM AI",
 	"version": ""
 }

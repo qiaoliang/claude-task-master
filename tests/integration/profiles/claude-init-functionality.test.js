@@ -68,9 +68,9 @@ describe('transformToClaudeFormat', () => {
 	test('should add type: stdio to MCP server configs', () => {
 		const input = {
 			mcpServers: {
-				'task-master-ai': {
+				'ztm-ai': {
 					command: 'npx',
-					args: ['-y', 'task-master-ai'],
+					args: ['-y', 'ztm-ai'],
 					env: { ANTHROPIC_API_KEY: 'test-key' }
 				}
 			}
@@ -78,10 +78,10 @@ describe('transformToClaudeFormat', () => {
 
 		const result = transformToClaudeFormat(input);
 
-		expect(result.mcpServers['task-master-ai']).toEqual({
+		expect(result.mcpServers['ztm-ai']).toEqual({
 			type: 'stdio',
 			command: 'npx',
-			args: ['-y', 'task-master-ai'],
+			args: ['-y', 'ztm-ai'],
 			env: { ANTHROPIC_API_KEY: 'test-key' }
 		});
 	});

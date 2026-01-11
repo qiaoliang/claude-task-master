@@ -247,7 +247,7 @@ async function performDirectNpmInstall(
 ): Promise<boolean> {
 	const spinner = ora({
 		text: chalk.blue(
-			`Updating task-master-ai to version ${chalk.green(latestVersion)}`
+			`Updating ztm-ai to version ${chalk.green(latestVersion)}`
 		),
 		spinner: 'dots',
 		color: 'blue'
@@ -259,7 +259,7 @@ async function performDirectNpmInstall(
 			[
 				'install',
 				'-g',
-				`task-master-ai@${latestVersion}`,
+				`ztm-ai@${latestVersion}`,
 				'--no-fund',
 				'--no-audit',
 				'--loglevel=warn'
@@ -273,7 +273,7 @@ async function performDirectNpmInstall(
 
 		updateProcess.stdout.on('data', () => {
 			spinner.text = chalk.blue(
-				`Installing task-master-ai@${latestVersion}...`
+				`Installing ztm-ai@${latestVersion}...`
 			);
 		});
 
@@ -293,7 +293,7 @@ async function performDirectNpmInstall(
 				spinner.fail(chalk.red('Auto-update failed'));
 				console.log(
 					chalk.cyan(
-						`Please run manually: npm install -g task-master-ai@${latestVersion}`
+						`Please run manually: npm install -g ztm-ai@${latestVersion}`
 					)
 				);
 				if (errorOutput) {
@@ -308,7 +308,7 @@ async function performDirectNpmInstall(
 			console.log(chalk.red('Error:'), error.message);
 			console.log(
 				chalk.cyan(
-					`Please run manually: npm install -g task-master-ai@${latestVersion}`
+					`Please run manually: npm install -g ztm-ai@${latestVersion}`
 				)
 			);
 			resolve(false);
@@ -317,7 +317,7 @@ async function performDirectNpmInstall(
 }
 
 /**
- * Automatically update task-master-ai to the latest version
+ * Automatically update ztm-ai to the latest version
  */
 export async function performAutoUpdate(
 	latestVersion: string
@@ -347,7 +347,7 @@ export async function performAutoUpdate(
 
 	// Create temp directory for tarball
 	const tempDir = os.tmpdir();
-	const tarballPath = path.join(tempDir, `task-master-ai-${latestVersion}.tgz`);
+	const tarballPath = path.join(tempDir, `ztm-ai-${latestVersion}.tgz`);
 
 	// Download tarball with progress
 	const downloadSuccess = await downloadTarballWithProgress(
@@ -368,7 +368,7 @@ export async function performAutoUpdate(
 	if (!installSuccess) {
 		console.log(
 			chalk.cyan(
-				`Please run manually: npm install -g task-master-ai@${latestVersion}`
+				`Please run manually: npm install -g ztm-ai@${latestVersion}`
 			)
 		);
 		return false;

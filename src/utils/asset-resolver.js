@@ -32,11 +32,11 @@ export function getAssetsDir() {
 		path.join(
 			process.cwd(),
 			'node_modules',
-			'task-master-ai',
+			'ztm-ai',
 			'dist',
 			'assets'
 		),
-		path.join(process.cwd(), 'node_modules', 'task-master-ai', 'assets')
+		path.join(process.cwd(), 'node_modules', 'ztm-ai', 'assets')
 	];
 
 	// Find the first existing assets directory

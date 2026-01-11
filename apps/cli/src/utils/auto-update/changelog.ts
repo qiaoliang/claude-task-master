@@ -16,7 +16,7 @@ export async function fetchChangelogHighlights(
 			path: '/eyaltoledano/claude-task-master/main/CHANGELOG.md',
 			method: 'GET',
 			headers: {
-				'User-Agent': `task-master-ai/${version}`
+				'User-Agent': `ztm-ai/${version}`
 			}
 		};
 

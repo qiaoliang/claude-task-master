@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-<b>Taskmaster</b>: A task management system for AI-driven development, designed to work seamlessly with any AI chat.
+<b>ZTM</b>: A task management system for AI-driven development, designed to work seamlessly with any AI chat.
 </p>
 
 <p align="center">
@@ -20,14 +20,14 @@
 <p align="center">
   <a href="https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml"><img src="https://github.com/eyaltoledano/claude-task-master/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://github.com/eyaltoledano/claude-task-master/stargazers"><img src="https://img.shields.io/github/stars/eyaltoledano/claude-task-master?style=social" alt="GitHub stars"></a>
-  <a href="https://badge.fury.io/js/task-master-ai"><img src="https://badge.fury.io/js/task-master-ai.svg" alt="npm version"></a>
+  <a href="https://badge.fury.io/js/ztm-ai"><img src="https://badge.fury.io/js/ztm-ai.svg" alt="npm version"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT%20with%20Commons%20Clause-blue.svg" alt="License"></a>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/task-master-ai"><img src="https://img.shields.io/npm/d18m/task-master-ai?style=flat" alt="NPM Downloads"></a>
-  <a href="https://www.npmjs.com/package/task-master-ai"><img src="https://img.shields.io/npm/dm/task-master-ai?style=flat" alt="NPM Downloads"></a>
-  <a href="https://www.npmjs.com/package/task-master-ai"><img src="https://img.shields.io/npm/dw/task-master-ai?style=flat" alt="NPM Downloads"></a>
+  <a href="https://www.npmjs.com/package/ztm-ai"><img src="https://img.shields.io/npm/d18m/ztm-ai?style=flat" alt="NPM Downloads"></a>
+  <a href="https://www.npmjs.com/package/ztm-ai"><img src="https://img.shields.io/npm/dm/ztm-ai?style=flat" alt="NPM Downloads"></a>
+  <a href="https://www.npmjs.com/package/ztm-ai"><img src="https://img.shields.io/npm/dw/ztm-ai?style=flat" alt="NPM Downloads"></a>
 </p>
 
 ## By [@eyaltoledano](https://x.com/eyaltoledano) & [@RalphEcom](https://x.com/RalphEcom)
@@ -56,7 +56,7 @@ The following documentation is also available in the `docs` directory:
 
 #### Quick Install for Cursor 1.0+ (One-Click)
 
-[![Add task-master-ai MCP server to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=task-master-ai&config=eyJjb21tYW5kIjoibnB4IC15IC0tcGFja2FnZT10YXNrLW1hc3Rlci1haSB0YXNrLW1hc3Rlci1haSIsImVudiI6eyJBTlRIUk9QSUNfQVBJX0tFWSI6IllPVVJfQU5USFJPUElDX0FQSV9LRVlfSEVSRSIsIlBFUlBMRVhJVFlfQVBJX0tFWSI6IllPVVJfUEVSUExFWElUWV9BUElfS0VZX0hFUkUiLCJPUEVOQUlfQVBJX0tFWSI6IllPVVJfT1BFTkFJX0tFWV9IRVJFIiwiR09PR0xFX0FQSV9LRVkiOiJZT1VSX0dPT0dMRV9LRVlfSEVSRSIsIk1JU1RSQUxfQVBJX0tFWSI6IllPVVJfTUlTVFJBTF9LRVlfSEVSRSIsIkdST1FfQVBJX0tFWSI6IllPVVJfR1JPUV9LRVlfSEVSRSIsIk9QRU5ST1VURVJfQVBJX0tFWSI6IllPVVJfT1BFTlJPVVRFUl9LRVlfSEVSRSIsIlhBSV9BUElfS0VZIjoiWU9VUl9YQUlfS0VZX0hFUkUiLCJBWlVSRV9PUEVOQUlfQVBJX0tFWSI6IllPVVJfQVpVUkVfS0VZX0hFUkUiLCJPTExBTUFfQVBJX0tFWSI6IllPVVJfT0xMQU1BX0FQSV9LRVlfSEVSRSJ9fQ%3D%3D)
+[![Add ztm-ai MCP server to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en/install-mcp?name=ztm-ai&config=eyJjb21tYW5kIjoibnB4IC15IC0tcGFja2FnZT16dG0tYWkgenRtLWFpIiwiZW52Ijp7IkFOVEhST1BJQ19BUElfS0VZIjoiWU9VUl9BTlRIUk9QSUMtQVBJX0tFWV9IRVJFIiwiUEVSUExFWElUWV9BUElfS0VZIjoiWU9VUl9QRVJQTEVYSVRZX0FQSV9LRVlfSEVSRUiLCJPUEVOQUlfQVBJX0tFWSI6IllPVVJfT1BFTkFJX0tFWV9IRVJFIiwiR09PR0xFX0FQSV9LRVkiOiJZT1VSX0dPT0dMRV9LRVlfSEVSRSIsIk1JU1RSQUxfQVBJX0tFWSI6IllPVVJfTUlTVFJBTF9LRVlfSEVSRSIsIkdST1FfQVBJX0tFWSI6IllPVVJfR1JPUV9LRVlfSEVSRSIsIk9QRU5ST1VURVJfQVBJX0tFWSI6IllPVVJfT1BFTlJPVVRFUl9LRVlfSEVSRSIsIlhBSV9BUElfS0VZIjoiWU9VUl9YQUlfS0VZX0hFUkUiLCJBWlVSRV9PUEVOQUlfQVBJX0tFWSI6IllPVVJfQVpVUkVfS0VZX0hFUkUiLCJPTExBTUFfQVBJX0tFWSI6IllPVVJfT0xMQU1BX0FQSV9LRVlfSEVSRSJ9fQ%3D%3D)
 
 > **Note:** After clicking the link, you'll still need to add your API keys to the configuration. The link installs the MCP server with placeholder keys that you'll need to replace with your actual API keys.
 
@@ -65,7 +65,7 @@ The following documentation is also available in the `docs` directory:
 For Claude Code users:
 
 ```bash
-claude mcp add taskmaster-ai -- npx -y task-master-ai
+claude mcp add ztm-ai -- npx -y ztm-ai
 ```
 
 Don't forget to add your API keys to the configuration:
@@ -115,9 +115,9 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
 ```json
 {
   "mcpServers": {
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "npx",
-      "args": ["-y", "task-master-ai"],
+      "args": ["-y", "ztm-ai"],
       "env": {
         // "TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
         "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
@@ -145,9 +145,9 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
 ```json
 {
   "servers": {
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "npx",
-      "args": ["-y", "task-master-ai"],
+      "args": ["-y", "ztm-ai"],
       "env": {
         // "TASK_MASTER_TOOLS": "all", // Options: "all", "standard", "core", or comma-separated list of tools
         "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
@@ -171,7 +171,7 @@ MCP (Model Control Protocol) lets you run Task Master directly from your editor.
 
 #### 2. (Cursor-only) Enable Taskmaster MCP
 
-Open Cursor Settings (Ctrl+Shift+J) ➡ Click on MCP tab on the left ➡ Enable task-master-ai with the toggle
+Open Cursor Settings (Ctrl+Shift+J) ➡ Click on MCP tab on the left ➡ Enable ztm-ai with the toggle
 
 #### 3. (Optional) Configure the models you want to use
 
@@ -193,7 +193,7 @@ Change the main model to claude-code/sonnet
 In your editor's AI chat pane, say:
 
 ```txt
-Initialize taskmaster-ai in my project
+Initialize ztm-ai in my project
 ```
 
 #### 5. Make sure you have a PRD (Recommended)
@@ -230,23 +230,23 @@ Use your AI assistant to:
 
 ```bash
 # Install globally
-npm install -g task-master-ai
+npm install -g ztm-ai
 
 # OR install locally within your project
-npm install task-master-ai
+npm install ztm-ai
 ```
 
 #### Initialize a new project
 
 ```bash
 # If installed globally
-task-master init
+ztm init
 
 # If installed locally
-npx task-master init
+npx ztm init
 
 # Initialize project with specific rules
-task-master init --rules cursor,windsurf,vscode
+ztm init --rules cursor,windsurf,vscode
 ```
 
 This will prompt you for project details and set up a new project with the necessary files and structure.
@@ -255,30 +255,30 @@ This will prompt you for project details and set up a new project with the neces
 
 ```bash
 # Initialize a new project
-task-master init
+ztm init
 
 # Parse a PRD and generate tasks
-task-master parse-prd your-prd.txt
+ztm parse-prd your-prd.txt
 
 # List all tasks
-task-master list
+ztm list
 
 # Show the next task to work on
-task-master next
+ztm next
 
 # Show specific task(s) - supports comma-separated IDs
-task-master show 1,3,5
+ztm show 1,3,5
 
 # Research fresh information with project context
-task-master research "What are the latest best practices for JWT authentication?"
+ztm research "What are the latest best practices for JWT authentication?"
 
 # Move tasks between tags (cross-tag movement)
-task-master move --from=5 --from-tag=backlog --to-tag=in-progress
-task-master move --from=5,6,7 --from-tag=backlog --to-tag=done --with-dependencies
-task-master move --from=5 --from-tag=backlog --to-tag=in-progress --ignore-dependencies
+ztm move --from=5 --from-tag=backlog --to-tag=in-progress
+ztm move --from=5,6,7 --from-tag=backlog --to-tag=done --with-dependencies
+ztm move --from=5 --from-tag=backlog --to-tag=in-progress --ignore-dependencies
 
 # Add rules after initialization
-task-master rules add windsurf,roo,vscode
+ztm rules add windsurf,roo,vscode
 ```
 
 ## Tool Loading Configuration
@@ -307,9 +307,9 @@ Add `TASK_MASTER_TOOLS` to your MCP configuration file's `env` section:
 ```jsonc
 {
   "mcpServers": {  // or "servers" for VS Code
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "npx",
-      "args": ["-y", "task-master-ai"],
+      "args": ["-y", "ztm-ai"],
       "env": {
         "TASK_MASTER_TOOLS": "standard",  // Options: "all", "standard", "core", "lean", or comma-separated list
         "ANTHROPIC_API_KEY": "your-key-here",
@@ -326,14 +326,14 @@ For Claude Code users, you can set the mode during installation:
 
 ```bash
 # Core mode example (~70% token reduction)
-claude mcp add task-master-ai --scope user \
+claude mcp add ztm-ai --scope user \
   --env TASK_MASTER_TOOLS="core" \
-  -- npx -y task-master-ai@latest
+  -- npx -y ztm-ai@latest
 
 # Custom tools example
-claude mcp add task-master-ai --scope user \
+claude mcp add ztm-ai --scope user \
   --env TASK_MASTER_TOOLS="get_tasks,next_task,set_task_status" \
-  -- npx -y task-master-ai@latest
+  -- npx -y ztm-ai@latest
 ```
 
 ### Tool Sets Details
@@ -397,7 +397,7 @@ node scripts/init.js
 
 ## Licensing
 
-Task Master is licensed under the MIT License with Commons Clause. This means you can:
+ZTM is licensed under the MIT License with Commons Clause. This means you can:
 
 ✅ **Allowed**:
 
@@ -408,8 +408,8 @@ Task Master is licensed under the MIT License with Commons Clause. This means yo
 
 ❌ **Not Allowed**:
 
-- Sell Task Master itself
-- Offer Task Master as a hosted service
-- Create competing products based on Task Master
+- Sell ZTM itself
+- Offer ZTM as a hosted service
+- Create competing products based on ZTM
 
 See the [LICENSE](LICENSE) file for the complete license text and [licensing details](docs/licensing.md) for more information.

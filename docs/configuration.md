@@ -97,7 +97,7 @@ The `TASK_MASTER_TOOLS` environment variable controls which tools are loaded by 
    ```jsonc
    {
      "mcpServers": {
-       "task-master-ai": {
+       "ztm-ai": {
          "env": {
            "TASK_MASTER_TOOLS": "standard",  // Set tool loading mode
            // API keys can still use .env for security
@@ -110,9 +110,9 @@ The `TASK_MASTER_TOOLS` environment variable controls which tools are loaded by 
 2. **Via Claude Code CLI**:
 
    ```bash
-   claude mcp add task-master-ai --scope user \
+   claude mcp add ztm-ai --scope user \
      --env TASK_MASTER_TOOLS="core" \
-     -- npx -y task-master-ai@latest
+     -- npx -y ztm-ai@latest
    ```
 
 3. **In CI/deployment environment variables**:
@@ -315,9 +315,9 @@ Add a `timeout` parameter to your MCP configuration to extend the timeout limit.
 ```json
 {
   "mcpServers": {
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "npx",
-      "args": ["-y", "--package=task-master-ai", "task-master-ai"],
+      "args": ["-y", "--package=ztm-ai", "ztm-ai"],
       "timeout": 300,
       "env": {
         "ANTHROPIC_API_KEY": "your-anthropic-api-key"

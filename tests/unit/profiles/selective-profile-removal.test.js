@@ -94,9 +94,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config file
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -203,9 +203,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config file
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -287,9 +287,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with only Task Master (will be completely deleted)
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -329,9 +329,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with only Task Master (will be completely deleted)
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -371,9 +371,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with multiple servers (Task Master will be removed, others preserved)
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					},
 					'other-server': {
 						command: 'node',
@@ -419,9 +419,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with only Task Master (will be completely deleted)
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -450,9 +450,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with multiple servers
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					},
 					'other-server': {
 						command: 'node',
@@ -489,7 +489,7 @@ describe('Selective Rules Removal', () => {
 			);
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(projectRoot, mcpConfigPath),
-				expect.not.stringContaining('task-master-ai')
+				expect.not.stringContaining('ztm-ai')
 			);
 		});
 
@@ -500,9 +500,9 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with only Task Master
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': {
+					'ztm-ai': {
 						command: 'npx',
-						args: ['task-master-ai']
+						args: ['ztm-ai']
 					}
 				}
 			};
@@ -537,7 +537,7 @@ describe('Selective Rules Removal', () => {
 				mcpServers: {
 					'taskmaster-wrapper': {
 						command: 'npx',
-						args: ['-y', 'task-master-ai']
+						args: ['-y', 'ztm-ai']
 					},
 					'other-server': {
 						command: 'node',
@@ -558,7 +558,7 @@ describe('Selective Rules Removal', () => {
 			expect(result.removed).toBe(true);
 			expect(result.hasOtherServers).toBe(true);
 
-			// Verify only the server with task-master-ai in args was removed
+			// Verify only the server with ztm-ai in args was removed
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(projectRoot, mcpConfigPath),
 				expect.stringContaining('other-server')
@@ -638,7 +638,7 @@ describe('Selective Rules Removal', () => {
 			// Mock MCP config with multiple servers
 			const mockMcpConfig = {
 				mcpServers: {
-					'task-master-ai': { command: 'npx', args: ['task-master-ai'] },
+					'ztm-ai': { command: 'npx', args: ['ztm-ai'] },
 					'other-server': { command: 'node', args: ['other.js'] }
 				}
 			};

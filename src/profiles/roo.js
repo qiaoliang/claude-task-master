@@ -19,8 +19,8 @@ function enhanceRooMCPConfiguration(mcpPath) {
 		// Read the existing configuration
 		const mcpConfig = JSON.parse(fs.readFileSync(mcpPath, 'utf8'));
 
-		if (mcpConfig.mcpServers && mcpConfig.mcpServers['task-master-ai']) {
-			const server = mcpConfig.mcpServers['task-master-ai'];
+		if (mcpConfig.mcpServers && mcpConfig.mcpServers['ztm-ai']) {
+			const server = mcpConfig.mcpServers['ztm-ai'];
 
 			// Add Roo-specific timeout enhancement for long-running AI operations
 			server.timeout = 300;
@@ -32,7 +32,7 @@ function enhanceRooMCPConfiguration(mcpPath) {
 				`[Roo] Enhanced MCP configuration with timeout at ${mcpPath}`
 			);
 		} else {
-			log('warn', `[Roo] task-master-ai server not found in MCP configuration`);
+			log('warn', `[Roo] ztm-ai server not found in MCP configuration`);
 		}
 	} catch (error) {
 		log('error', `[Roo] Failed to enhance MCP configuration: ${error.message}`);

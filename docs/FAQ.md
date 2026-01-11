@@ -326,10 +326,10 @@ npm run turbo:dev
 
 ```bash
 # 全局安装
-npm install -g task-master-ai
+npm install -g ztm-ai
 
 # 或者在项目中本地安装
-npm install task-master-ai
+npm install ztm-ai
 
 # 使用 npx 运行
 npx task-master init
@@ -442,7 +442,7 @@ npm link
 
 ```bash
 # 更新到最新版本
-npm update -g task-master-ai
+npm update -g ztm-ai
 ```
 
 ### 如何设置自己的大模型服务并使用源代码在本地执行？
@@ -673,7 +673,7 @@ task-master show 1
 ```json
 {
   "mcpServers": {
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "node",
       "args": ["/Users/qiaoliang/working/code/claude-task-master/dist/mcp-server.js"],
       "env": {

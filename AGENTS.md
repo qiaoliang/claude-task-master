@@ -318,9 +318,9 @@ task-master research "查询内容"  # 研究最新信息
 ```json
 {
   "mcpServers": {
-    "task-master-ai": {
+    "ztm-ai": {
       "command": "npx",
-      "args": ["-y", "task-master-ai"],
+      "args": ["-y", "ztm-ai"],
       "env": {
         "TASK_MASTER_TOOLS": "core",
         "ANTHROPIC_API_KEY": "your_key_here",

@@ -278,7 +278,7 @@ log_step() {
   # --- Test Setup (Output to tee) ---
   log_step "Setting up test environment"
 
-  log_step "Creating global npm link for task-master-ai"
+  log_step "Creating global npm link for ztm-ai"
   if npm link; then
     log_success "Global link created/updated."
   else
@@ -327,8 +327,8 @@ log_step() {
 
   # --- Test Execution (Output to tee) ---
 
-  log_step "Linking task-master-ai package locally"
-  npm link task-master-ai
+  log_step "Linking ztm-ai package locally"
+  npm link ztm-ai
   log_success "Package linked locally."
 
   log_step "Initializing Task Master project (non-interactive)"
