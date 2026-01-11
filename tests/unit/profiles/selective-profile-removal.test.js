@@ -40,7 +40,7 @@ describe('Selective Rules Removal', () => {
 		console.log = jest.fn();
 
 		// Create temp directory for testing
-		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'task-master-test-'));
+		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ztm-test-'));
 
 		// Set up spies on fs methods
 		mockExistsSync = jest.spyOn(fs, 'existsSync');

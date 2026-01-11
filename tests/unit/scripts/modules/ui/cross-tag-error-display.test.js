@@ -357,10 +357,10 @@ describe('Cross-Tag Error Display Functions', () => {
 				expect.stringContaining('Helpful hints:')
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
-				expect.stringContaining('💡 Use "task-master validate-dependencies"')
+				expect.stringContaining('💡 Use "ztm validate-dependencies"')
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
-				expect.stringContaining('💡 Use "task-master fix-dependencies"')
+				expect.stringContaining('💡 Use "ztm fix-dependencies"')
 			);
 		});
 
@@ -372,11 +372,11 @@ describe('Cross-Tag Error Display Functions', () => {
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
 				expect.stringContaining(
-					'💡 Tip: Run "task-master validate-dependencies"'
+					'💡 Tip: Run "ztm validate-dependencies"'
 				)
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
-				expect.stringContaining('💡 Tip: Use "task-master fix-dependencies"')
+				expect.stringContaining('💡 Tip: Use "ztm fix-dependencies"')
 			);
 		});
 
@@ -388,12 +388,12 @@ describe('Cross-Tag Error Display Functions', () => {
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
 				expect.stringContaining(
-					'🔧 Quick fix: Run "task-master validate-dependencies"'
+					'🔧 Quick fix: Run "ztm validate-dependencies"'
 				)
 			);
 			expect(mockConsoleLog).toHaveBeenCalledWith(
 				expect.stringContaining(
-					'🔧 Quick fix: Use "task-master fix-dependencies"'
+					'🔧 Quick fix: Use "ztm fix-dependencies"'
 				)
 			);
 		});
@@ -406,7 +406,7 @@ describe('Cross-Tag Error Display Functions', () => {
 			);
 			// Should fall back to general hints
 			expect(mockConsoleLog).toHaveBeenCalledWith(
-				expect.stringContaining('💡 Use "task-master validate-dependencies"')
+				expect.stringContaining('💡 Use "ztm validate-dependencies"')
 			);
 		});
 	});

@@ -1,5 +1,5 @@
 /**
- * Tests for task-master.js initTaskMaster function
+ * Tests for ztm.js initTaskMaster function
  */
 
 import fs from 'fs';

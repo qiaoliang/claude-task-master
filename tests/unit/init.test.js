@@ -38,7 +38,7 @@ describe('Windsurf Rules File Handling', () => {
 		jest.clearAllMocks();
 
 		// Create a temporary directory for testing
-		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'task-master-test-'));
+		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ztm-test-'));
 
 		// Spy on fs methods
 		jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});
@@ -157,7 +157,7 @@ describe('MCP Configuration Handling', () => {
 		jest.clearAllMocks();
 
 		// Create a temporary directory for testing
-		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'task-master-test-'));
+		tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ztm-test-'));
 
 		// Spy on fs methods
 		jest.spyOn(fs, 'writeFileSync').mockImplementation(() => {});

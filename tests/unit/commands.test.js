@@ -118,7 +118,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 		test('should return Commander program instance', () => {
 			const program = setupCLI();
 			expect(program).toBeDefined();
-			expect(program.name()).toBe('task-master');
+			expect(program.name()).toBe('ztm');
 		});
 
 		test('should return version that matches package.json when TM_PUBLIC_VERSION is set', () => {
@@ -159,7 +159,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 
 	describe('CLI Flag Format Validation', () => {
 		test('should detect camelCase flags correctly', () => {
-			const args = ['node', 'task-master', '--camelCase', '--kebab-case'];
+			const args = ['node', 'ztm', '--camelCase', '--kebab-case'];
 			const camelCaseFlags = args.filter(
 				(arg) =>
 					arg.startsWith('--') && /[A-Z]/.test(arg) && !arg.includes('-[A-Z]')
@@ -169,7 +169,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 		});
 
 		test('should accept kebab-case flags correctly', () => {
-			const args = ['node', 'task-master', '--kebab-case'];
+			const args = ['node', 'ztm', '--kebab-case'];
 			const camelCaseFlags = args.filter(
 				(arg) =>
 					arg.startsWith('--') && /[A-Z]/.test(arg) && !arg.includes('-[A-Z]')
@@ -187,7 +187,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 		test('detectCamelCaseFlags should identify camelCase flags', () => {
 			const args = [
 				'node',
-				'task-master',
+				'ztm',
 				'add-task',
 				'--promptText=test',
 				'--userID=123'
@@ -208,7 +208,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 		test('detectCamelCaseFlags should not flag kebab-case flags', () => {
 			const args = [
 				'node',
-				'task-master',
+				'ztm',
 				'add-task',
 				'--prompt-text=test',
 				'--user-id=123'
@@ -221,7 +221,7 @@ describe('Commands Module - CLI Setup and Integration', () => {
 		test('detectCamelCaseFlags should respect single-word flags', () => {
 			const args = [
 				'node',
-				'task-master',
+				'ztm',
 				'add-task',
 				'--prompt=test',
 				'--file=test.json',
@@ -376,7 +376,7 @@ describe('rules command', () => {
 	});
 
 	test('should handle rules add <profile> command', async () => {
-		// Simulate: task-master rules add roo
+		// Simulate: ztm rules add roo
 		await program.parseAsync(['rules', RULES_ACTIONS.ADD, 'roo'], {
 			from: 'user'
 		});
@@ -392,7 +392,7 @@ describe('rules command', () => {
 	});
 
 	test('should handle rules remove <profile> command', async () => {
-		// Simulate: task-master rules remove roo --force
+		// Simulate: ztm rules remove roo --force
 		await program.parseAsync(
 			['rules', RULES_ACTIONS.REMOVE, 'roo', '--force'],
 			{
@@ -455,7 +455,7 @@ describe('rules command', () => {
 	});
 
 	test('should show error for invalid action', async () => {
-		// Simulate: task-master rules invalid-action
+		// Simulate: ztm rules invalid-action
 		await program.parseAsync(['rules', 'invalid-action'], { from: 'user' });
 
 		// Should show error for invalid action
@@ -465,7 +465,7 @@ describe('rules command', () => {
 		expect(mockConsoleError).toHaveBeenCalledWith(
 			expect.stringMatching(
 				new RegExp(
-					`For interactive setup, use: task-master rules --${RULES_SETUP_ACTION}`,
+					`For interactive setup, use: ztm rules --${RULES_SETUP_ACTION}`,
 					'i'
 				)
 			)
@@ -474,7 +474,7 @@ describe('rules command', () => {
 	});
 
 	test('should show error when no action provided', async () => {
-		// Simulate: task-master rules (no action)
+		// Simulate: ztm rules (no action)
 		await program.parseAsync(['rules'], { from: 'user' });
 
 		// Should show error for missing action
@@ -484,7 +484,7 @@ describe('rules command', () => {
 		expect(mockConsoleError).toHaveBeenCalledWith(
 			expect.stringMatching(
 				new RegExp(
-					`For interactive setup, use: task-master rules --${RULES_SETUP_ACTION}`,
+					`For interactive setup, use: ztm rules --${RULES_SETUP_ACTION}`,
 					'i'
 				)
 			)
