@@ -115,7 +115,7 @@ Results are:
 
 After analysis:
 ```
-/taskmaster:expand 5    # Expand specific task
-/taskmaster:expand-all  # Expand all recommended
-/taskmaster:complexity-report  # View detailed report
+/ztm:expand 5    # Expand specific task
+/ztm:expand-all  # Expand all recommended
+/ztm:complexity-report  # View detailed report
 ```

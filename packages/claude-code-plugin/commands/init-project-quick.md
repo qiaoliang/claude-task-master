@@ -30,17 +30,17 @@ task-master init -y
 After quick init:
 1. Configure AI models if needed:
    ```
-   /taskmaster:models/setup
+   /ztm:models/setup
    ```
 
 2. Parse PRD if available:
    ```
-   /taskmaster:parse-prd <file>
+   /ztm:parse-prd <file>
    ```
 
 3. Or create first task:
    ```
-   /taskmaster:add-task create initial setup
+   /ztm:add-task create initial setup
    ```
 
 Perfect for rapid project setup!

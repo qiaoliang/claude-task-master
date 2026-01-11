@@ -66,9 +66,9 @@ AI-powered task management system for ambitious development workflows.
 **Quick Start:**
 
 ```bash
-/tm:init
-/tm:parse-prd
-/tm:next
+/ztm:init
+/ztm:parse-prd
+/ztm:next
 ```
 
 ## For Contributors

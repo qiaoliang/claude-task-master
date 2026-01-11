@@ -105,13 +105,13 @@ Use report for:
 ## Example Usage
 
 ```
-/taskmaster:complexity-report
+/ztm:complexity-report
 → Opens latest analysis
 
-/taskmaster:complexity-report --file=archived/2024-01-01.md
+/ztm:complexity-report --file=archived/2024-01-01.md
 → View historical analysis
 
 After viewing:
-/taskmaster:expand 5
+/ztm:expand 5
 → Expand high-complexity task
 ```
