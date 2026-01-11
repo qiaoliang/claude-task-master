@@ -148,7 +148,7 @@ const DEFAULT_CONFIG = {
 		bedrockBaseURL: 'https://bedrock.us-east-1.amazonaws.com',
 		enableCodebaseAnalysis: true,
 		enableProxy: false,
-		responseLanguage: 'English'
+		responseLanguage: 'Chinese'
 	},
 	claudeCode: {},
 	codexCli: {},
@@ -1006,7 +1006,7 @@ describe('Getter Functions', () => {
 			configManager.getResponseLanguage(MOCK_PROJECT_ROOT);
 
 		// Assert
-		expect(responseLanguage).toBe('English');
+		expect(responseLanguage).toBe('Chinese');
 	});
 
 	// Add more tests for other getters (getResearchProvider, getProjectName, etc.)
