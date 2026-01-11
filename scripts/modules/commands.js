@@ -198,7 +198,14 @@ function isConnectedToHamster() {
  */
 async function promptHamsterCollaboration() {
 	// Skip prompt in non-interactive mode only
-	if (!process.stdin.isTTY) {
+	// Check for various non-interactive environments
+	if (
+		!process.stdin.isTTY ||
+		process.env.CI ||
+		process.env.NON_INTERACTIVE ||
+		process.env.GITHUB_ACTIONS ||
+		process.env.GITLAB_CI
+	) {
 		return 'local';
 	}
 
@@ -1083,6 +1090,8 @@ function registerCommands(programInstance) {
 					projectRoot: taskMaster.getProjectRoot(),
 					tag: tag
 				});
+				// Ensure clean exit after successful completion
+				process.exit(0);
 			} catch (error) {
 				console.error(chalk.red(`Error parsing PRD: ${error.message}`));
 				process.exit(1);

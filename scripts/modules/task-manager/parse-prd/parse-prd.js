@@ -155,11 +155,23 @@ async function handleCompletionReporting(
 			completionMessage = `✅ Task Generation Completed | ~Tokens (I/O): ${estimatedInputTokens}/${outputTokens} | Cost: ~$0.00`;
 		}
 
-		await config.reportProgress({
-			progress: config.numTasks,
-			total: config.numTasks,
-			message: completionMessage
-		});
+		// Safely call reportProgress with error handling
+		try {
+			await Promise.race([
+				config.reportProgress({
+					progress: config.numTasks,
+					total: config.numTasks,
+					message: completionMessage
+				}),
+				// Add timeout to prevent hanging (5 seconds)
+				new Promise((_, reject) =>
+					setTimeout(() => reject(new Error('reportProgress timeout')), 5000)
+				)
+			]);
+		} catch (progressError) {
+			// Log but don't fail - progress reporting is optional
+			logger.report(`reportProgress failed or timed out: ${progressError.message}`, 'warn');
+		}
 	}
 
 	// CLI output
