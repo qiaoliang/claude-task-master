@@ -1199,6 +1199,8 @@ function registerCommands(programInstance) {
 				useResearch,
 				{ projectRoot: taskMaster.getProjectRoot(), tag } // Pass context with projectRoot and tag
 			);
+			// Explicitly exit to ensure program terminates correctly
+			process.exit(0);
 		});
 
 	// update-task command
@@ -1373,6 +1375,8 @@ function registerCommands(programInstance) {
 						)
 					);
 				}
+				// Explicitly exit to ensure program terminates correctly
+				process.exit(0);
 			} catch (error) {
 				console.error(chalk.red(`Error: ${error.message}`));
 
@@ -1894,6 +1898,8 @@ function registerCommands(programInstance) {
 						} // Pass context with projectRoot and tag
 						// outputFormat defaults to 'text' in expandAllTasks for CLI
 					);
+					// Explicitly exit to ensure program terminates correctly
+					process.exit(0);
 				} catch (error) {
 					console.error(
 						chalk.red(`Error expanding all tasks: ${error.message}`)
@@ -1926,6 +1932,8 @@ function registerCommands(programInstance) {
 						options.force // Pass the force flag down
 					);
 					// expandTask logs its own success/failure for single task
+					// Explicitly exit to ensure program terminates correctly
+					process.exit(0);
 				} catch (error) {
 					console.error(
 						chalk.red(`Error expanding task ${options.id}: ${error.message}`)
@@ -2033,6 +2041,8 @@ function registerCommands(programInstance) {
 			};
 
 			await analyzeTaskComplexity(updatedOptions);
+			// Explicitly exit to ensure program terminates correctly
+			process.exit(0);
 		});
 
 	// research command
@@ -2391,6 +2401,8 @@ ${result.result}
 						chalk.green(`\n💾 Results saved to: ${validatedParams.saveTarget}`)
 					);
 				}
+				// Explicitly exit to ensure program terminates correctly
+				process.exit(0);
 			} catch (error) {
 				console.error(chalk.red(`\n❌ Research failed: ${error.message}`));
 				process.exit(1);
@@ -2458,6 +2470,8 @@ ${result.result}
 					tag
 				});
 			}
+			// Explicitly exit to ensure program terminates correctly
+			process.exit(0);
 		});
 
 	// add-task command
@@ -2585,6 +2599,8 @@ ${result.result}
 
 				// addTask handles detailed CLI success logging AND telemetry display when outputFormat is 'text'
 				// No need to call displayAiUsageSummary here anymore.
+				// Explicitly exit to ensure program terminates correctly
+				process.exit(0);
 			} catch (error) {
 				console.error(chalk.red(`Error adding task: ${error.message}`));
 				if (error.details) {

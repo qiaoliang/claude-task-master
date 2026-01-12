@@ -30,14 +30,21 @@ rl.on('close', async () => {
 		const apiResponse = JSON.parse(inputData);
 
 		// 2. Extract the text content containing the nested JSON
-		// Robust check for content structure
-		const textContent = apiResponse?.content?.[0]?.text;
-		if (!textContent) {
+		// Support both OpenAI-compatible format and Anthropic format
+		let textContent;
+		if (apiResponse?.choices?.[0]?.message?.content) {
+			// OpenAI-compatible format (TM-Direct, OpenAI, etc.)
+			textContent = apiResponse.choices[0].message.content;
+		} else if (apiResponse?.content?.[0]?.text) {
+			// Anthropic format
+			textContent = apiResponse.content[0].text;
+		} else {
 			console.error(
 				chalk.red(
-					"Error: Could not find '.content[0].text' in the API response JSON."
+					"Error: Could not find response content in the API response JSON. Expected either '.choices[0].message.content' (OpenAI format) or '.content[0].text' (Anthropic format)."
 				)
 			);
+			console.error(chalk.yellow('Response structure:'), JSON.stringify(Object.keys(apiResponse), null, 2));
 			process.exit(1);
 		}
 

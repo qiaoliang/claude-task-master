@@ -109,8 +109,8 @@ export function validateFileOperations({
 			throw new Error(errorMessage);
 		} else {
 			console.error(chalk.red(errorMessage));
-			process.exit(1);
 		}
+		throw new Error(errorMessage);
 	}
 
 	logger.report(

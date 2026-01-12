@@ -171,7 +171,8 @@ async function setTaskStatus(tasksPath, taskIdInput, newStatus, options = {}) {
 				console.error(error);
 			}
 
-			process.exit(1);
+			// In CLI mode, throw the error for the caller to handle
+			throw error;
 		} else {
 			// In MCP mode, throw the error for the caller to handle
 			throw error;

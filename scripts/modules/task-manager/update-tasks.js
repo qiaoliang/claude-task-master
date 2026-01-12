@@ -330,10 +330,8 @@ async function updateTasks(
 			if (getDebugFlag(session)) {
 				console.error(error);
 			}
-			process.exit(1);
-		} else {
-			throw error; // Re-throw for MCP/programmatic callers
 		}
+		throw error; // Re-throw for all callers to handle
 		// --- End General Error Handling ---
 	}
 }

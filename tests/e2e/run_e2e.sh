@@ -485,7 +485,7 @@ log_step() {
   log_success "Set main model."
 
   log_step "Setting research model"
-  ztm models --set-research sonar-pro
+  ztm models --set-research glm-4.7
   log_success "Set research model."
 
   log_step "Setting fallback model"
@@ -536,17 +536,16 @@ log_step() {
 
   # Define providers, models, and flags
   # Array order matters: providers[i] corresponds to models[i] and flags[i]
-  declare -a providers=("anthropic" "openai" "google" "perplexity" "xai" "openrouter")
+  declare -a providers=("anthropic" "openai" "google" "xai" "openrouter")
   declare -a models=(
     "claude-3-7-sonnet-20250219"
     "gpt-4o"
     "gemini-2.5-pro-preview-05-06"
-    "sonar-pro" # Note: This is research-only, add-task might fail if not using research model
     "grok-3"
     "anthropic/claude-3.7-sonnet" # OpenRouter uses Claude 3.7
   )
   # Flags: Add provider-specific flags here, e.g., --openrouter. Use empty string if none.
-  declare -a flags=("" "" "" "" "" "--openrouter")
+  declare -a flags=("" "" "" "" "--openrouter")
 
   # Consistent prompt for all providers
   add_task_prompt="Create a task to implement user authentication using OAuth 2.0 with Google as the provider. Include steps for registering the app, handling the callback, and storing user sessions."
@@ -557,6 +556,38 @@ log_step() {
     provider="${providers[$i]}"
     model="${models[$i]}"
     flag="${flags[$i]}"
+
+    # Check if API key exists for this provider
+    api_key_var=""
+    case "$provider" in
+      "anthropic")
+        api_key_var="ANTHROPIC_API_KEY"
+        ;;
+      "openai")
+        api_key_var="OPENAI_API_KEY"
+        ;;
+      "google")
+        api_key_var="GOOGLE_API_KEY"
+        ;;
+      "xai")
+        api_key_var="XAI_API_KEY"
+        ;;
+      "openrouter")
+        api_key_var="OPENROUTER_API_KEY"
+        ;;
+      *)
+        api_key_var=""
+        ;;
+    esac
+
+    if [ -n "$api_key_var" ]; then
+      api_key_value=$(grep "^${api_key_var}=" "$ORIGINAL_DIR/.env" 2>/dev/null | sed -e "s/^${api_key_var}=//" -e 's/^[[:space:]"]*//' -e 's/[[:space:]"]*$//')
+      if [ -z "$api_key_value" ]; then
+        log_info "Skipping $provider test: $api_key_var not found in .env file"
+        echo "Provider $provider add-task SKIPPED (No API key)" >> provider_add_task_summary.log
+        continue
+      fi
+    fi
 
     log_step "Testing Add-Task with Provider: $provider (Model: $model)"
 

@@ -825,7 +825,7 @@ async function listTasks(
 		}
 
 		console.error(chalk.red(`Error: ${error.message}`));
-		process.exit(1);
+		throw error;
 	}
 }
 

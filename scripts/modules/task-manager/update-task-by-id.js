@@ -560,9 +560,8 @@ async function updateTaskById(
 			console.error(chalk.red(`Error: ${error.message}`));
 			// ... helpful hints ...
 			if (getDebugFlag(session)) console.error(error);
-			process.exit(1);
 		}
-		throw error; // Re-throw for MCP
+		throw error; // Re-throw for all callers
 		// --- End General Error Handling ---
 	}
 }

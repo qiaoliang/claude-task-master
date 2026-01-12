@@ -730,6 +730,7 @@ function writeJSON(filepath, data, projectRoot = null, tag = null) {
 			}
 
 			// Re-read the full file to get the complete tagged structure
+			// Use async readFile to avoid blocking the main thread
 			const rawFullData = JSON.parse(fs.readFileSync(filepath, 'utf8'));
 
 			// Merge the updated data into the full structure

@@ -20,7 +20,7 @@ function clearSubtasks(tasksPath, taskIds, context = {}) {
 	const data = readJSON(tasksPath, projectRoot, tag);
 	if (!data || !data.tasks) {
 		log('error', 'No valid tasks found.');
-		process.exit(1);
+		throw new Error('No valid tasks found.');
 	}
 
 	if (!isSilentMode()) {

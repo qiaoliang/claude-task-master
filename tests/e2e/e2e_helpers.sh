@@ -55,10 +55,10 @@ analyze_log_with_llm() {
 
   local provider_summary_log="provider_add_task_summary.log" # File summarizing provider test outcomes
   local api_key=""
-  local api_endpoint="https://api.anthropic.com/v1/messages"
-  local api_key_name="ANTHROPIC_API_KEY"
-  local llm_analysis_model_id="claude-3-7-sonnet-20250219" # Model used for this analysis
-  local llm_analysis_provider="anthropic"
+  local api_endpoint="https://open.bigmodel.cn/api/paas/v4/chat/completions"
+  local api_key_name="TM_API_KEY"
+  local llm_analysis_model_id="glm-4.7" # Model used for this analysis
+  local llm_analysis_provider="tm-direct"
 
   echo "" # Add a newline before analysis starts
 
@@ -154,8 +154,7 @@ EOF
   local response_raw response_http_code response_body
   response_raw=$(curl -s -w "\nHTTP_STATUS_CODE:%{http_code}" -X POST "$api_endpoint" \
        -H "Content-Type: application/json" \
-       -H "x-api-key: $api_key" \
-       -H "anthropic-version: 2023-06-01" \
+       -H "Authorization: Bearer $api_key" \
        --data "$payload")
 
   response_http_code=$(echo "$response_raw" | grep '^HTTP_STATUS_CODE:' | sed 's/HTTP_STATUS_CODE://')
@@ -174,8 +173,8 @@ EOF
 
   # Calculate cost of this LLM analysis call
   local input_tokens output_tokens input_cost_per_1m output_cost_per_1m calculated_llm_cost
-  input_tokens=$(echo "$response_body" | jq -r '.usage.input_tokens // 0')
-  output_tokens=$(echo "$response_body" | jq -r '.usage.output_tokens // 0')
+  input_tokens=$(echo "$response_body" | jq -r '.usage.prompt_tokens // 0')
+  output_tokens=$(echo "$response_body" | jq -r '.usage.completion_tokens // 0')
 
   if [ -f "$supported_models_file" ]; then
       model_cost_info=$(jq -r --arg provider "$llm_analysis_provider" --arg model_id "$llm_analysis_model_id" '

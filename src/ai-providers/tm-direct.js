@@ -120,173 +120,50 @@ export class TMDirectProvider extends OpenAICompatibleProvider {
 	}
 
 	/**
-	 * Override generateObject to use JSON mode instead of auto mode
+	 * Override generateObject to use JSON mode and handle array wrapping
 	 * This avoids the responseFormat parameter which is not supported by GLM-4.7
+	 * Reuses base provider's JSON repair logic
 	 * @param {object} params - Parameters for object generation
 	 * @returns {Promise<object>} Normalized response
 	 */
 	async generateObject(params) {
-		try {
-			this.validateParams(params);
-			this.validateMessages(params.messages);
+		// Call base provider's generateObject with JSON mode
+		// This reuses the JSON repair logic from base-provider.js
+		const result = await super.generateObject({
+			...params,
+			mode: 'json',
+			schemaDescription: `Generate a valid JSON object for ${params.objectName}. IMPORTANT: Return ONLY the JSON object, no markdown code blocks, no backticks, no text before or after the JSON.`
+		});
 
-			if (!params.schema) {
-				throw new Error('Schema is required for object generation');
-			}
-			if (!params.objectName) {
-				throw new Error('Object name is required for object generation');
-			}
+		// Handle array wrapping for TM-specific behavior
+		// TM sometimes returns bare arrays instead of objects with properties
+		if (Array.isArray(result.object)) {
+			// Try to find the array property from the schema
+			const wrapperKey = this.findArrayPropertyInSchema(params.schema);
 
-			log(
-				'debug',
-				`Generating ${this.name} object ('${params.objectName}') with model: ${params.modelId}`
-			);
-
-			const client = await this.getClient(params);
-
-			// Get Sentry telemetry config with function ID and metadata for better tracing
-			// Format: provider.model.command.method.objectName
-			const commandName = params.commandName || 'unknown';
-			const functionId = `${this.name}.${params.modelId}.${commandName}.generateObject.${params.objectName}`;
-
-			// Build telemetry metadata for enhanced filtering/grouping in Sentry
-			const metadata = {
-				command: commandName,
-				outputType: params.outputType,
-				tag: params.tag,
-				projectHash: params.projectRoot,
-				userId: params.userId, // Hamster user ID if authenticated
-				briefId: params.briefId // Hamster brief ID if connected
-			};
-
-			const telemetryConfig = getAITelemetryConfig(functionId, metadata);
-
-			const result = await generateObject({
-				model: client(params.modelId),
-				messages: params.messages,
-				schema: params.schema,
-				mode: 'json', // Force JSON mode to avoid responseFormat parameter
-				schemaName: params.objectName,
-				schemaDescription: `Generate a valid JSON object for ${params.objectName}. IMPORTANT: Return ONLY the JSON object, no markdown code blocks, no backticks, no text before or after the JSON.`,
-				maxTokens: params.maxTokens,
-				...(this.supportsTemperature && params.temperature !== undefined
-					? { temperature: params.temperature }
-					: {}),
-				...(telemetryConfig && { experimental_telemetry: telemetryConfig })
-			});
-
-			log(
-				'debug',
-				`${this.name} generateObject completed successfully for model: ${params.modelId}`
-			);
-
-			const inputTokens =
-				result.usage?.inputTokens ?? result.usage?.promptTokens ?? 0;
-			const outputTokens =
-				result.usage?.outputTokens ?? result.usage?.completionTokens ?? 0;
-			const totalTokens =
-				result.usage?.totalTokens ?? inputTokens + outputTokens;
-
-			let finalObject = result.object;
-
-			// If result.object is an array, wrap it based on schema introspection
-			if (Array.isArray(finalObject)) {
-				// Try to find the array property from the schema
-				const wrapperKey = this.findArrayPropertyInSchema(params.schema);
-
-				if (wrapperKey) {
-					finalObject = {
-						[wrapperKey]: finalObject
-					};
-				} else {
-					// Fallback: if we can't introspect the schema, use the object name
-					// This handles edge cases where schema introspection might fail
-					console.warn(
-						`TM returned a bare array for '${params.objectName}' but could not determine wrapper property from schema. Using objectName as fallback.`
-					);
-
-					finalObject = {
-						[params.objectName]: finalObject
-					};
-				}
-			}
-
-			return {
-				object: finalObject,
-				usage: {
-					inputTokens,
-					outputTokens,
-					totalTokens
-				}
-			};
-		} catch (error) {
-			// Check if this is a JSON parsing error that we can potentially fix
-			if (
-				NoObjectGeneratedError.isInstance(error) &&
-				error.cause?.name === 'AI_JSONParseError' &&
-				error.cause?.text
-			) {
-				log(
-					'warn',
-					`${this.name} generated malformed JSON, attempting to repair...`
+			if (wrapperKey) {
+				return {
+					...result,
+					object: {
+						[wrapperKey]: result.object
+					}
+				};
+			} else {
+				// Fallback: if we can't introspect the schema, use the object name
+				// This handles edge cases where schema introspection might fail
+				console.warn(
+					`TM returned a bare array for '${params.objectName}' but could not determine wrapper property from schema. Using objectName as fallback.`
 				);
 
-				try {
-					// Use jsonrepair to fix the malformed JSON
-					const repairedJson = jsonrepair(error.cause.text);
-					const parsed = JSON.parse(repairedJson);
-
-					log('info', `Successfully repaired ${this.name} JSON output`);
-
-					// Return in the expected format
-					const inputTokens =
-						error.usage?.promptTokens || error.usage?.inputTokens || 0;
-					const outputTokens =
-						error.usage?.completionTokens || error.usage?.outputTokens || 0;
-					const totalTokens =
-						error.usage?.totalTokens || inputTokens + outputTokens;
-
-					let finalObject = parsed;
-
-					// If result.object is an array, wrap it based on schema introspection
-					if (Array.isArray(finalObject)) {
-						// Try to find the array property from the schema
-						const wrapperKey = this.findArrayPropertyInSchema(params.schema);
-
-						if (wrapperKey) {
-							finalObject = {
-								[wrapperKey]: finalObject
-							};
-						} else {
-							// Fallback: if we can't introspect the schema, use the object name
-							console.warn(
-								`TM returned a bare array for '${params.objectName}' but could not determine wrapper property from schema. Using objectName as fallback.`
-							);
-
-							finalObject = {
-								[params.objectName]: finalObject
-							};
-						}
+				return {
+					...result,
+					object: {
+						[params.objectName]: result.object
 					}
-
-					return {
-						object: finalObject,
-						usage: {
-							inputTokens,
-							outputTokens,
-							totalTokens
-						}
-					};
-				} catch (repairError) {
-					log(
-						'error',
-						`Failed to repair ${this.name} JSON: ${repairError.message}`
-					);
-					// Fall through to handleError with original error
-				}
+				};
 			}
-
-			this.handleError('object generation', error);
 		}
+
+		return result;
 	}
 }

@@ -626,10 +626,8 @@ async function analyzeTaskComplexity(options, context = {}) {
 			if (getDebugFlag(session)) {
 				console.error(error);
 			}
-			process.exit(1);
-		} else {
-			throw error;
 		}
+		throw error;
 	}
 }
 
